@@ -1,7 +1,7 @@
 const config = {
     "name": "config.js"
-    , "dbName": "save-anywhere"
-    , "dbDesc": "save-anywhere database"
+    , "dbName": "fqt-todo"
+    , "dbDesc": "fqt-todo database"
     , "dbDataTableName": "notes"
 
     , "operationDelayMs": 500

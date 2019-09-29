@@ -11,7 +11,7 @@ main();
   "info": {
     "editable": false,
     "frameId": 0,
-    "menuItemId": "save-anywhere",
+    "menuItemId": "fqt-todo",
     "pageUrl": "chrome://extensions/",
     "selectionText": "ID：opkoninacfpinfmklefkfdklgdebdoen"
   },

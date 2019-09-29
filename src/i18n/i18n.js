@@ -5,7 +5,7 @@ import deepmerge from 'deepmerge'
 // 准备翻译的语言环境信息
 const messages = {
 	en: {
-        "mainPage": "save-anywhere",
+        "mainPage": "fqt-todo",
         "importExport": "import/export",
         "dataManage": "data manage",
         "popupPage": "popup page",
@@ -28,7 +28,7 @@ const messages = {
         , "login": "login"
 	},
 	zh: {
-        "mainPage": "save-anywhere",
+        "mainPage": "fqt-todo",
         "importExport": "导入/导出",
         "dataManage": "数据管理",
         "popupPage": "popup 页面",
