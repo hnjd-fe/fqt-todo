@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+.DS_Store
 prod.config.js
 
 # Runtime data
