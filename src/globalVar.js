@@ -1,5 +1,5 @@
 
-import parseBool from 'parseBoolean';
+import parseBool from 'parseboolean';
 
 let devMode = parseBool( localStorage.getItem( 'devMode' ) );
 let restoreClean = parseBool( localStorage.getItem( 'restoreClean' ) );

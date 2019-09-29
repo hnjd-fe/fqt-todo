@@ -1,20 +1,44 @@
 
-require( './index.less' )
-
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+import i18nConfig from '@src/i18n/i18n.js'
+
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import localeEn from 'element-ui/lib/locale/lang/en'
 import App from './App.vue'
+import store from '@src/store';
+import router from './router';
+import routes from './routes.js';
+import databaseInfo from '@src/components/databaseInfo.vue'
 
-Vue.use(ElementUI)
+import globalVar from '@src/globalVar.js';
+
+require( '@src/chrome/chrome_login.js');
+
+router.addRoutes(routes);
+
+Vue.prototype.globalVar = globalVar;
+
+Vue.use( VueI18n );
+
+let eleSetting = {}
+
+if( i18nConfig.getLocale() == 'en' ){
+	eleSetting.locale = localeEn;
+}
+
+Vue.use(ElementUI, eleSetting )
+Vue.component( 'databaseInfo', databaseInfo)
 
 Vue.use(VueAxios, axios)
-//Vue.axios.defaults.withCredentials = true
 
-console.log( 'code from vue', Date.now() );
 
 new Vue({
-  render: h => h(App)
+	i18n: i18nConfig.init( i18nConfig.getLocale(), 'index' ),
+    router,
+    store,
+    render: h => h(App)
 }).$mount( '#app' );

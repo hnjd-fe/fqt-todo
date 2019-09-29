@@ -27,6 +27,7 @@ module.exports = {
     extensions: ['.js', '.json', 'scss', 'css', 'less', 'vue' ],
     alias: {
       '@': utils.resolve('src'),
+      '@src': utils.resolve('src'),
       '@root': utils.resolve('./'),
       '~': utils.resolve('node_modules'),
 	  'vue$': 'vue/dist/vue.esm.js'
@@ -127,6 +128,7 @@ module.exports = {
   plugins: [
     ...entryPlugins.plugins,
     // 全局暴露统一入口
+    new webpack.IgnorePlugin(/\.\/locale$/),
 	new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       // $: 'jquery'
