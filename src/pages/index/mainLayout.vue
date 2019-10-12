@@ -35,18 +35,23 @@
 </style>
 
 <script>
-  export default {
-    props: [ "packInfo" ],
-    data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-      };
-      return {
-        //tableData: Array(20).fill(item)
-        tableData: []
-      }
-    }
-  };
+import moment from '@src/chrome/utils/moment.js'
+import config from '@src/chrome/config'
+import dataMixin from '@src/mixin/data.js'
+const packInfo = require( '@root/package.json' )
+
+export default {
+	data() {
+		const item = {
+			date: '2016-05-02',
+			name: '王小虎',
+		};
+		return {
+			//tableData: Array(20).fill(item)
+			tableData: []
+			, packInfo: packInfo
+		}
+	}
+};
 </script>
 
