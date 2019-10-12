@@ -15,7 +15,7 @@ module.exports = {
     ...entryPlugins.entries
   },
   output: {
-    path: utils.resolve(__dirname, 'dist'),
+    path: utils.resolve(__dirname, 'fqt-todo'),
     filename: `${config.build.assetsSubDirectory}/js/[name].[hash:7].bundle.js`,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
