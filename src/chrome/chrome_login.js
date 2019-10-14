@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	delegate( document.body, '#login', 'click', ( evt )=> {
         if( chrome && chrome.tabs  ){
             chrome.tabs.create( {
-                url: 'http://btbtd.org/api/saveanywhere'
+                url: 'http://btbtd.org/api/fattodo'
             },
             function(tab) {
 
             });
         }else{
-            location.href = "http://btbtd.org/api/saveanywhere?from=" 
+            location.href = "http://btbtd.org/api/fattodo?from=" 
 				+ encodeURIComponent( location.href.split('?')[0] ) ;
         }
 	});

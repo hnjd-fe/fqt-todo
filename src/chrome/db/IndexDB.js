@@ -73,7 +73,7 @@ export default class IndexDB extends BaseDB {
                     let ltext = text.toLowerCase();
                     if( 
                         ( note.note && (note.note).toLowerCase().indexOf( ltext ) > -1 )
-                        || ( note.siteTitle && (note.siteTitle ).toLowerCase().indexOf( ltext ) > -1 )
+                        || ( note.type && (note.type ).toLowerCase().indexOf( ltext ) > -1 )
                     ){
                         r.unshift( note );
                     }
@@ -88,7 +88,7 @@ export default class IndexDB extends BaseDB {
     getDB(){
         let db = new Dexie( config.dbName );
         db.version(1).stores({
-            [`${config.dbDataTableName}`]: "++id,note,siteUrl,siteTitle,tags,remark,width,height,md5,createDate,updateDate"
+            [`${config.dbDataTableName}`]: "++id,note,status,type,tags,remark,width,height,md5,createDate,updateDate"
         });
         return db;
     }
@@ -118,7 +118,7 @@ export default class IndexDB extends BaseDB {
                 .then( ( data )=>{
                     console.log( 'delete', id, data, md5 );
                    if( this.isLogin() && md5 ){
-                       axios.post( 'http://btbtd.org/api/saveanywhere/?s=/Index/Data/del&rnd=' + Date.now(), {
+                       axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/del&rnd=' + Date.now(), {
                             uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                             , md5: md5
@@ -144,8 +144,8 @@ export default class IndexDB extends BaseDB {
             let dataItem =  Object.assign( {
                 note: '' 
                 , md5: '' 
-                , siteUrl: '' 
-                , siteTitle: ''
+                , status: 0 
+                , type: ''
                 , tags: ''
                 , remark: ''
                 , width: 100
@@ -158,11 +158,11 @@ export default class IndexDB extends BaseDB {
             console.log( 'data added:', dataItem );
             db[config.dbDataTableName].add( dataItem ).then(()=>{
                 if( this.isLogin() ){
-                    axios.post( 'http://btbtd.org/api/saveanywhere/?s=/Index/Data/add', {
+                    axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/add', {
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
-                        , siteUrl: dataItem.siteUrl
-                        , siteTitle: dataItem.siteTitle
+                        , status: dataItem.status
+                        , type: dataItem.type
                         , note: dataItem.note
                         , remark: dataItem.remark
                         , updateDate: parseInt( dataItem.updateDate)
@@ -210,7 +210,7 @@ export default class IndexDB extends BaseDB {
                     md5[ item.md5 ] = item.id;
                 });
                 
-               axios.post( 'http://btbtd.org/api/saveanywhere/?s=/Index/Data/sync&rnd=' + Date.now(), {
+               axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/sync&rnd=' + Date.now(), {
                     uid: localStorage.getItem( 'uid' )
                     , token: localStorage.getItem( 'token' )
                     , md5: JSON.stringify( md5 )
@@ -254,7 +254,7 @@ export default class IndexDB extends BaseDB {
                         item.token = localStorage.getItem( 'token' );
                     });
 
-                    axios.post( 'http://btbtd.org/api/saveanywhere/?s=/Index/Data/batchAdd', {
+                    axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/batchAdd', {
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
                         , data: JSON.stringify( data )
@@ -356,8 +356,8 @@ export default class IndexDB extends BaseDB {
                 listData.push( {
                     note: tmpNote
                     , md5: md5( tmpNote )
-                    , siteUrl: 'index.html'
-                    , siteTitle: '-'
+                    , status: 0
+                    , type: '-'
                     , tags: ''
                     , remark: ''
                     , width: "100"
@@ -399,7 +399,7 @@ export default class IndexDB extends BaseDB {
             let r = [];
             db.transaction( 'rw', db[config.dbDataTableName], () => {
                db[config.dbDataTableName].toCollection().modify( ( data )=>{
-                    data.md5 = md5( [ data.siteTitle + data.note ].join( ' - ' ) )
+                    data.md5 = md5( [ data.type + data.note ].join( ' - ' ) )
                     r.push( data );
                 }).then( ()=>{
                     resolve( r );

@@ -36,7 +36,7 @@
 	]
 	, "content_scripts": [
 		{
-			"matches": ["http://btbtd.org/api/saveanywhere/token*"]
+			"matches": ["http://btbtd.org/api/fattodo/token*"]
 			, "js": ["chrome/utils/oauth2/oauth2_inject.js"]
 			, "run_at": "document_start"
 		}

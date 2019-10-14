@@ -44,7 +44,7 @@ function addNote(info, tab) {
 
     let data = {
 		note: `info.selectionText`
-		, siteUrl: tab.url
+		, status: 0
 		, siteTitle: tab.title
 		, md5: ''
 		, width: tab.width.toString()

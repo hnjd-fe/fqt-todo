@@ -23,15 +23,15 @@
             </el-col>
 
             <el-col :span="18" style="padding-bottom: 5px;">
-                <div v-if="item.siteUrl">
-                    <a :href="item.siteUrl" :title="item.siteTitle" style="display:block;padding-left:0!important;" target="_blank">
-                        <label v-html="hightlightSearch(item.siteTitle)"></label>
+                <div v-if="item.status">
+                    <a :href="item.status" :title="item.type" style="display:block;padding-left:0!important;" target="_blank">
+                        <label v-html="hightlightSearch(item.type)"></label>
                     </a>
                         <span v-html="hightlightSearch(item.note, 1, item)"></span>
                 </div>
                 <div v-else>
-                    <a :title="item.siteTitle" style="display:block;padding-left:0!important;" >
-                        <label v-html="hightlightSearch(item.siteTitle)"></label>
+                    <a :title="item.type" style="display:block;padding-left:0!important;" >
+                        <label v-html="hightlightSearch(item.type)"></label>
                     </a>
                         <span v-html="hightlightSearch(item.note, 1, item)"></span>
                 </div>
