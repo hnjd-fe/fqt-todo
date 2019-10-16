@@ -11,11 +11,11 @@ const routes = [
       path: '',
       component: mainLayout
     }
-    /*
     , {
       path: '/*index.html/',
       component: mainLayout,
     }
+    /*
     , {
       path: '/*importExport.html/',
       component: importExport,

@@ -25,38 +25,51 @@
     <el-main 
 		v-loading="loading"
     >
-      <el-table :data="listData">
-        <el-table-column prop="id" label="ID" width="80" ></el-table-column>
-        <el-table-column  :label="$t('note')">
-            <template slot-scope="scope">
-            <div>
-                <a :href="scope.row.siteUrl" target="_blank">
-                    <label v-if="scope.row.siteTitle" style="display:block;font-weight:bold; margin-bottom:5px;"
-                    v-html="hightlightSearch(scope.row.siteTitle)"
-                    ></label>
-                </a>
-                    <span v-html="hightlightSearch(scope.row.note, 1, scope.row )"></span>
-                <a :href="scope.row.siteUrl" target="_blank">
-                    <label v-if="scope.row.siteUrl" style="display:block; margin-top:5px;">{{scope.row.siteUrl}}</label>
-                </a>
-            </div>
-            </template>
-        </el-table-column>
-        <el-table-column  :label="$t('updateDate')" :width="180">
-            <template slot-scope="scope">
-                <span>{{moment(parseInt(scope.row.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}</span>
-            </template>
-        </el-table-column>
-        <el-table-column  :label="$t('operation')" :width="200">
-            <template slot-scope="scope">
-                <el-button v-if="false">{{$t('modify')}}</el-button>
-                <el-button @click="onDeleteItem( $event, scope.row.id, scope.row )">{{$t('delete')}}</el-button>
-            </template>
-        </el-table-column>
+        <el-row class="type-main">
+            <el-col :span="12" class="type-box">
+                <el-row class="type-header">
+                    <el-col :span="18">
+                        <label>很重要-很紧急</label>
+                    </el-col>
+                    <el-col :span="6">
+                          <el-button icon="el-icon-plus" circle></el-button>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="12" class="type-box">
+                <el-row class="type-header">
+                    <el-col :span="18">
+                        <label>重要-不紧急</label>
+                    </el-col>
+                    <el-col :span="6">
+                          <el-button icon="el-icon-plus" circle></el-button>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="12" class="type-box">
+                <el-row class="type-header">
+                    <el-col :span="18">
+                        <label>不重要-紧急</label>
+                    </el-col>
+                    <el-col :span="6">
+                          <el-button icon="el-icon-plus" circle></el-button>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="12" class="type-box">
+               <el-row class="type-header">
+                    <el-col :span="18">
+                        <label>不重要-不紧急</label>
+                    </el-col>
+                    <el-col :span="6">
+                          <el-button icon="el-icon-plus" circle></el-button>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
 
-      </el-table>
     </el-main>
-		<el-pagination
+		<!--<el-pagination
 		  v-if="listData.length && !loading && listTotal > listPageSize"
 		  background
 		  layout="prev, pager, next"
@@ -65,7 +78,7 @@
 		  :current-page="listCurPage"
 		  @current-change="curListChange"
 		  >
-		</el-pagination>
+		</el-pagination>-->
 
   </el-container>
 </template>
