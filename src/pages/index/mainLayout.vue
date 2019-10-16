@@ -4,7 +4,7 @@
         <el-row>
             <el-col :span="10">
                 <span>
-                    <i class="el-icon-logo" style="margin-right: 15px"></i>
+                    <i class="el-icon-logo" style="margin-right: 0px"></i>
                 </span>
                 <label style="font-weight: bold; font-size: 16px;">{{packInfo.name}}</label>
                 <span>{{$t('totalLabel')}} </span><span>{{fullTotal}}</span>
