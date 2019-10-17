@@ -1,0 +1,16 @@
+{
+  "id": "1463396",
+  "name": "fqt-todo",
+  "font_family": "element-icons",
+  "css_prefix_text": "el-icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "304687",
+      "name": "enter",
+      "font_class": "enter",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    }
+  ]
+}

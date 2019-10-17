@@ -41,7 +41,12 @@
                           <el-button icon="el-icon-plus" circle></el-button>
                     </el-col>
                 </el-row>
-                <AddItemComp :index="index" :item="item" v-if="addVisible[index]" />
+                <AddItemComp 
+					:index="index" 
+					:item="item" 
+					:hide="hideMethod"
+					v-if="addVisible[index]" 
+					/>
             </el-col>
         </el-row>
 
@@ -87,6 +92,8 @@
 
 <script>
 const packInfo = require( '@root/package.json' )
+
+import "@src/assets/css/iconfont/iconfont.css";
 
 
 import moment from '@src/chrome/utils/moment.js'
@@ -140,6 +147,10 @@ export default {
                 console.error( err );
             });
         }
+
+		, hideMethod( type, item ) {
+            this.$set( this.addVisible, type, false  );
+		}
     }
 
 };
