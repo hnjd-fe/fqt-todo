@@ -2,7 +2,6 @@
 
 @import "../../assets/less/common.less";
 
-
 body {
     width: 334px;
     text-align: left;
@@ -25,11 +24,23 @@ body {
         font-weight: bold;
         font-size: 18px;
         padding-left: 10px;
+        color: @type0Color;
+        background-color: @type0Bgcolor;
     }
 
-    .type-header {
-        background-color: #FFEDE7;
-        color: #F76333;
+    .type-box-1 .type-header {
+        color: @type1Color;
+        background-color: @type1Bgcolor;
+    }
+
+    .type-box-2 .type-header {
+        color: @type2Color;
+        background-color: @type2Bgcolor;
+    }
+
+    .type-box-3 .type-header {
+        color: @type3Color;
+        background-color: @type3Bgcolor;
     }
 
     .type-header .el-button {

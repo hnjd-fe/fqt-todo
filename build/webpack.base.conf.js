@@ -57,7 +57,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(css|scss|sass)$/,
+        test: /\.(scss|sass)$/,
         use: [
 			process.env.NODE_ENV === 'development' 
 			? 'style-loader' 
@@ -66,7 +66,7 @@ module.exports = {
 		]
       },
       {
-        test: /\.less$/,
+        test: /\.(css|less)$/,
         use: [
           {
             loader: 'style-loader', // creates style nodes from JS strings
