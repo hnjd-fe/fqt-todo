@@ -64,7 +64,7 @@ export default {
 	, directives: {
 		focus: {
 			inserted: function (el) {
-			el.querySelector('input').focus()
+				el.querySelector('input').focus()
 			}
 		}
 	}

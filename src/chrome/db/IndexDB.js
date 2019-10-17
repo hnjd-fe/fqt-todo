@@ -88,7 +88,7 @@ export default class IndexDB extends BaseDB {
     getDB(){
         let db = new Dexie( config.dbName );
         db.version(1).stores({
-            [`${config.dbDataTableName}`]: "++id,note,status,type,tags,remark,width,height,md5,createDate,updateDate"
+            [`${config.dbDataTableName}`]: "++id,note,status,type,tags,remark,width,height,md5,startDate,endDate,createDate,updateDate"
         });
         return db;
     }
@@ -142,16 +142,18 @@ export default class IndexDB extends BaseDB {
             let db = this.getDB();
             let dateStr = Date.now(); 
             let dataItem =  Object.assign( {
-                note: '' 
-                , md5: '' 
-                , status: 0 
-                , type: ''
-                , tags: ''
-                , remark: ''
-                , width: 100
-                , height: 100
-                , createDate: dateStr
-                , updateDate: dateStr
+                    note: '' 
+                    , md5: '' 
+                    , status: 0 
+                    , type: ''
+                    , tags: ''
+                    , remark: ''
+                    , width: 100
+                    , height: 100
+                    , startDate: dateStr
+                    , endDate: dateStr
+                    , createDate: dateStr
+                    , updateDate: dateStr
                 }
                 , json 
             );
@@ -165,12 +167,14 @@ export default class IndexDB extends BaseDB {
                         , type: dataItem.type
                         , note: dataItem.note
                         , remark: dataItem.remark
-                        , updateDate: parseInt( dataItem.updateDate)
-                        , createDate: parseInt( dataItem.createDate )
                         , height: parseInt( dataItem.height )
                         , width: parseInt( dataItem.width )
                         , tags: dataItem.tags
                         , md5: dataItem.md5
+                        , startDate: parseInt( dataItem.startDate)
+                        , endDate: parseInt( dataItem.endDate )
+                        , updateDate: parseInt( dataItem.updateDate)
+                        , createDate: parseInt( dataItem.createDate )
                     }).then( (res)=>{
                         this.parseRequestData( res );
                     });
@@ -362,6 +366,8 @@ export default class IndexDB extends BaseDB {
                     , remark: ''
                     , width: "100"
                     , height: "100"
+                    , startDate: dateStr
+                    , endDate: dateStr
                     , createDate: dateStr
                     , updateDate: dateStr
                 } )
@@ -414,6 +420,8 @@ export default class IndexDB extends BaseDB {
             let r = [];
             db.transaction( 'rw', db[config.dbDataTableName], () => {
                db[config.dbDataTableName].toCollection().modify( ( data )=>{
+                    data.startDate= parseInt( data.startDate);
+                    data.endDate= parseInt( data.endDate);
                     data.createDate = parseInt( data.createDate );
                     data.updateDate = parseInt( data.updateDate );
                     r.push( data );
