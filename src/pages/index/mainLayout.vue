@@ -47,6 +47,12 @@
 					:hide="hideMethod"
 					v-if="addVisible[index]" 
 					/>
+
+                <ListDataComp
+					:index="index" 
+					:item="item" 
+					:list="fqtData[index]"
+					/>
             </el-col>
         </el-row>
 

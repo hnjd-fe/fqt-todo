@@ -1,5 +1,6 @@
 
 import AddItemComp from '@src/components/additem.vue';
+import ListDataComp from '@src/components/listdata.vue';
 import db from '@src/chrome/db.js'
 import typemap from '@src/data/typemap.js'
 
@@ -21,6 +22,8 @@ let mixin = {
             , syncInProcessing: 0
             , fullTotal: 0
 
+			, fqtData: {}
+
             , token: localStorage.getItem( 'token' )
             , email: localStorage.getItem( 'email' )
             , username: localStorage.getItem( 'username' )
@@ -34,6 +37,7 @@ let mixin = {
     }
     , components: {
         AddItemComp
+		, ListDataComp
     } 
     , methods: {
         synchronousData() {
@@ -98,6 +102,13 @@ let mixin = {
 				this.listTotal = data.total;
 				this.page = 1;
 
+				this.fqtData = {};
+				this.listData.map( ( item ) => {
+					if( !( item.type in this.fqtData ) ){
+						this.fqtData[ item.type ] = [];
+					}
+					this.fqtData[ item.type ].push( item );
+				});
                 this.afterUpdateList();
                 this.updateFullTotal();
             });

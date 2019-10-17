@@ -58,7 +58,6 @@ function addNote(info, tab) {
 
 	return new Promise( ( resolve, reject ) => {
 
-
 		chrome.permissions.request({
 			permissions: ['tabs'],
 			origins: [
