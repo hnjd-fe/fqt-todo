@@ -1,6 +1,8 @@
 
 import db from '@src/chrome/db.js'
 
+import typemap from '@src/data/typemap.js'
+
 let mixin = {
     data() {
         return {
@@ -26,6 +28,8 @@ let mixin = {
             , md5: localStorage.getItem( 'md5' )
             , logintype: localStorage.getItem( 'logintype' )
             , uid: localStorage.getItem( 'uid' )
+
+            , typemap: typemap
         }
     }
     , methods: {

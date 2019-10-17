@@ -24,9 +24,10 @@
     
     <el-main 
 		v-loading="loading"
+        class="main-box"
     >
         <el-row class="type-main">
-            <el-col :span="12" class="type-box">
+            <el-col :span="12" :class="`type-box type-${typemap.IMPORTANT_URGENT}`">
                 <el-row class="type-header">
                     <el-col :span="18">
                         <label>很重要-很紧急</label>
@@ -36,7 +37,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="12" class="type-box">
+            <el-col :span="12" :class="`type-box type-${typemap.IMPORTANT_NOT_URGENT}`">
                 <el-row class="type-header">
                     <el-col :span="18">
                         <label>重要-不紧急</label>
@@ -46,7 +47,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="12" class="type-box">
+            <el-col :span="12" :class="`type-box type-${typemap.NOT_IMPORTANT_URGENT}`">
                 <el-row class="type-header">
                     <el-col :span="18">
                         <label>不重要-紧急</label>
@@ -56,7 +57,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="12" class="type-box">
+            <el-col :span="12" :class="`type-box type-${typemap.NOT_IMPORTANT_NOT_URGENT}`">
                <el-row class="type-header">
                     <el-col :span="18">
                         <label>不重要-不紧急</label>
