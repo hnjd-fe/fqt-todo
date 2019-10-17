@@ -8,6 +8,7 @@
 						suffix-icon="el-icon-enter"
 						v-focus
 						@blur="onBlur"
+						placeholder="请输入任务，按Enter键完成"
 						@keyup.enter.native="onSubmit()"
 					></el-input>
 				</el-form>
