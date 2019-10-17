@@ -41,6 +41,7 @@
                           <el-button icon="el-icon-plus" circle></el-button>
                     </el-col>
                 </el-row>
+                <AddItemComp :index="index" :item="item" v-if="addVisible[index]" />
             </el-col>
         </el-row>
 
@@ -85,16 +86,19 @@
 </style>
 
 <script>
+const packInfo = require( '@root/package.json' )
+
+
 import moment from '@src/chrome/utils/moment.js'
 import config from '@src/chrome/config'
 import dataMixin from '@src/mixin/data.js'
-const packInfo = require( '@root/package.json' )
 
 export default {
     mixins: [ dataMixin ]
     , data() {
         return {
             packInfo: packInfo
+            , addVisible: [ false, false, false, false ]
         }
     }
     , mounted(){
@@ -111,7 +115,7 @@ export default {
             }
 		}
         , onAddItem( evt, type ) {
-            console.log( evt, type );
+            this.$set( this.addVisible, type, !this.addVisible[ type ]  );
         }
 
         , onDeleteItem( evt, id, item ){

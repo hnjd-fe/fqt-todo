@@ -1,6 +1,6 @@
 
+import AddItemComp from '@src/components/additem.vue';
 import db from '@src/chrome/db.js'
-
 import typemap from '@src/data/typemap.js'
 
 let mixin = {
@@ -32,6 +32,9 @@ let mixin = {
             , typemap: typemap
         }
     }
+    , components: {
+        AddItemComp
+    } 
     , methods: {
         synchronousData() {
             console.log( 'synchronousData', Date.now(), db.isLogin() );
