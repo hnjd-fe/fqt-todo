@@ -80,7 +80,6 @@ let mixin = {
                 });
             });
         }
-
         , updateDefaultList() {
             db.topList()
             .then( ( data )=>{

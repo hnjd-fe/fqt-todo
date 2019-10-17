@@ -4,7 +4,7 @@
             <el-col :span="24">
 				<el-form ref="form" :model="form" label-width="80px" @submit.native.prevent>
 					<el-input 
-						v-model="form.name"
+						v-model.trim="form.note"
 						suffix-icon="el-icon-enter"
 						v-focus
 						@blur="onBlur"
@@ -27,19 +27,16 @@
 </style>
 
 <script>
+
+import modifyMixin from '@src/mixin/modify.js'
+
 export default {
-	props: [ "index", "item", "hide" ]
+    mixins: [ modifyMixin ]
+	, props: [ "index", "item", "hide" ]
 	, data() {
 		return {
 			form: {
-				name: '',
-				region: '',
-				date1: '',
-				date2: '',
-				delivery: false,
-				type: [],
-				resource: '',
-				desc: ''
+				note: ''
 			}
 		}
 	}
@@ -47,7 +44,33 @@ export default {
 		updateTotal() {
 		}
 		, onSubmit() {
-			this.onBlur();
+			console.log( this.form.note, Date.now() );
+			if( !this.form.note ) {
+				this.$message({
+					message: '请输入内容！',
+					type: 'warning'
+				});
+				return;
+			}
+			let json = { 
+				note: this.form.note 
+				, type: this.index
+				, status: 0
+			}
+
+			this.addItem( json ).then( ( json )=>{
+					this.$message({
+						message: '数据添加成功',
+						type: 'success'
+					});
+					this.onBlur();
+				}, ()=>{
+					this.$message({
+						message: '添加数据时出错',
+						type: 'error'
+					});
+				}
+			);
 
 			return false;
 		}
