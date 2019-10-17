@@ -27,40 +27,15 @@
         class="main-box"
     >
         <el-row class="type-main">
-            <el-col :span="12" :class="`type-box type-box-${typemap.IMPORTANT_URGENT}`">
-                <el-row class="type-header">
+            <el-col 
+                :span="12" 
+                v-for="(item, index) in typemap.item"
+                :class="`type-box type-box-${index}`"
+                :key="index"
+                >
+                <el-row class="type-header" @click.native="onAddItem( $event, index )">
                     <el-col :span="18">
-                        <label>很重要-很紧急</label>
-                    </el-col>
-                    <el-col :span="6">
-                          <el-button icon="el-icon-plus" circle></el-button>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="12" :class="`type-box type-box-${typemap.IMPORTANT_NOT_URGENT}`">
-                <el-row class="type-header">
-                    <el-col :span="18">
-                        <label>重要-不紧急</label>
-                    </el-col>
-                    <el-col :span="6">
-                          <el-button icon="el-icon-plus" circle></el-button>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="12" :class="`type-box type-box-${typemap.NOT_IMPORTANT_URGENT}`">
-                <el-row class="type-header">
-                    <el-col :span="18">
-                        <label>不重要-紧急</label>
-                    </el-col>
-                    <el-col :span="6">
-                          <el-button icon="el-icon-plus" circle></el-button>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="12" :class="`type-box type-box-${typemap.NOT_IMPORTANT_NOT_URGENT}`">
-               <el-row class="type-header">
-                    <el-col :span="18">
-                        <label>不重要-不紧急</label>
+                        <label>{{item.label}}</label>
                     </el-col>
                     <el-col :span="6">
                           <el-button icon="el-icon-plus" circle></el-button>
@@ -135,6 +110,10 @@ export default {
                 this.paddingMain = 'padding-bottom: 50px;'
             }
 		}
+        , onAddItem( evt, type ) {
+            console.log( evt, type );
+        }
+
         , onDeleteItem( evt, id, item ){
             this.loading = 1;
             this.deleteItem( id, item.md5 ).then( ( )=> {

@@ -8,4 +8,18 @@ const TYPE = {
 
 export default {
     ...TYPE
+    , item: [
+        {
+            label: '很重要-很紧急'
+        }
+        , {
+            label: '重要-不紧急'
+        }
+        , {
+            label: '不重要-紧急'
+        }
+        , {
+            label: '不重要-不紧急'
+        }
+    ]
 }
