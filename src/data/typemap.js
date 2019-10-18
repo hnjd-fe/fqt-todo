@@ -22,4 +22,15 @@ export default {
             label: '不重要-不紧急'
         }
     ]
+    , status: [
+        {
+            label: '已完成'
+            , value: true
+        }
+        , {
+            label: '未完成'
+            , value: false
+        }
+    ]
+
 }

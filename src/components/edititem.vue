@@ -11,16 +11,29 @@
 		  <el-col>
 			  <el-form :model="form">
 				  <el-form-item >
-					  <el-input v-model="form.name" autocomplete="off"></el-input>
+					  <el-input v-model="form.note" autocomplete="off"></el-input>
 				  </el-form-item>
 				<el-form-item>
-					<template>
-						<el-radio-group v-model="type">
-							<el-radio v-for="(sitem, sindex) in typemap.item" :label="sindex" >{{sitem.label}}</el-radio>
-						</el-radio-group>
-					</template>
-
+					<el-radio-group v-model="form.type">
+						<el-radio 
+						v-for="(sitem, sindex) in typemap.item" 
+						:label="sindex" 
+						:key="sindex" 
+						>{{sitem.label}}</el-radio>
+					</el-radio-group>
 				</el-form-item>
+
+				<el-form-item>
+					<el-radio-group v-model="form.status">
+						<el-radio 
+						v-for="(sitem, sindex) in typemap.status" 
+						:label="sitem.value" 
+						:key="sindex" 
+						>{{sitem.label}}</el-radio>
+					</el-radio-group>
+				</el-form-item>
+
+
 			  </el-form>
 			  <div class="demo-drawer__footer">
 				  <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
@@ -42,6 +55,14 @@
 	padding-top:15px;
 }
 
+.el-form-item {
+    margin-bottom: 0px;
+}
+
+.demo-drawer__footer {
+	margin-top: 15px;
+}
+
 </style>
 
 <script>
@@ -53,10 +74,11 @@ export default {
 	, props: [ "index", "item", "close", 'update', 'isedit' ]
 	, watch: {
 		isedit: function( newv, oldv ){
-			console.log( newv, oldv );
 			this.dialog = !!newv;
 			if( newv ) {
-				this.type = newv.type;
+				this.form = newv;
+			}else{
+				this.form = {};
 			}
 		}
 	}
@@ -65,16 +87,7 @@ export default {
 			table: false,
 			dialog: false,
 			loading: false,
-			type: 0,
 			form: {
-				name: '',
-				region: '',
-				date1: '',
-				date2: '',
-				delivery: false,
-				type: [],
-				resource: '',
-				desc: ''
 			},
 			formLabelWidth: '80px'
 		};
