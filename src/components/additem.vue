@@ -33,7 +33,7 @@ import modifyMixin from '@src/mixin/modify.js'
 
 export default {
     mixins: [ modifyMixin ]
-	, props: [ "index", "item", "hide" ]
+	, props: [ "index", "item", "hide", 'update' ]
 	, data() {
 		return {
 			form: {
@@ -64,7 +64,8 @@ export default {
 						message: '数据添加成功',
 						type: 'success'
 					});
-					this.onBlur();
+					this.onBlur( null, json );
+					this.update && this.update( json, this.index, this.item  );
 				}, ()=>{
 					this.$message({
 						message: '添加数据时出错',
@@ -75,8 +76,8 @@ export default {
 
 			return false;
 		}
-		, onBlur() {
-			this.hide && this.hide( this.index, this.item );
+		, onBlur( evt, json ) {
+			this.hide && this.hide( this.index, this.item, json );
 		}
 	}
 	, mounted(){

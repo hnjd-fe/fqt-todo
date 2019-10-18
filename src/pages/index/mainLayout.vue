@@ -45,6 +45,7 @@
 					:index="index" 
 					:item="item" 
 					:hide="hideMethod"
+					:update="updateList"
 					v-if="addVisible[index]" 
 					/>
 
@@ -94,6 +95,10 @@
     text-align: right;
     padding: 10px;
 }
+
+.type-main > .el-col:nth-child( odd ){
+	border-right: 1px solid #d9d9d9;
+}
 </style>
 
 <script>
@@ -131,6 +136,14 @@ export default {
             this.$set( this.addVisible, type, !this.addVisible[ type ]  );
         }
 
+		, hideMethod( type, item, json ) {
+            this.$set( this.addVisible, type, false  );
+		}
+
+		, updateList( json, type, item ){
+			this.updateFullList( 1, this.$route.query.id );
+		}
+
         , onDeleteItem( evt, id, item ){
             this.loading = 1;
             this.deleteItem( id, item.md5 ).then( ( )=> {
@@ -153,10 +166,6 @@ export default {
                 console.error( err );
             });
         }
-
-		, hideMethod( type, item ) {
-            this.$set( this.addVisible, type, false  );
-		}
     }
 
 };

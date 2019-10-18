@@ -12,7 +12,7 @@ let mixin = {
         moment
         , addItem( json ) {
             return new Promise( ( resolve, reject ) => {
-                db.add( json ).then( ()=> {
+                db.add( json ).then( ( json )=> {
                     resolve( json );
                 }).catch( ()=>{
                     reject( json );

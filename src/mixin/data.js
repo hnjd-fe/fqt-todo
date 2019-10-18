@@ -103,14 +103,21 @@ let mixin = {
 				this.page = 1;
 
 				this.fqtData = {};
+				let tmp = {};
 				this.listData.map( ( item ) => {
-					if( !( item.type in this.fqtData ) ){
-						this.fqtData[ item.type ] = [];
+					if( !( item.type in tmp) ){
+						tmp[ item.type ] = [];
 					}
-					this.fqtData[ item.type ].push( item );
+					tmp[ item.type ].push( item );
 				});
                 this.afterUpdateList();
                 this.updateFullTotal();
+
+				for( let k in tmp ){
+					this.$set( this.fqtData, k, tmp[k] );
+				}
+
+				console.log( 'fulllist fqtData', this.fqtData );
             });
         }
 

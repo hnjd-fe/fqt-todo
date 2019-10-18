@@ -1,13 +1,13 @@
 <template>
-    <div >
-        <el-row v-for="(item, index) in (list||[])" :key="index">
-            <el-col :span="4">
+    <div class="listitem-box" >
+        <el-row v-for="(item, index) in list" :key="index">
+            <el-col :span="2" style="text-align: center;" >
                 <el-checkbox v-model="item.status" label="" true-label="" false-label="" round />
             </el-col>
             <el-col :span="16">
             {{item.note}}
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6" style="text-align: right; padding-right: 5px;">
             {{moment(parseInt(item.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
             </el-col>
         </el-row>
@@ -15,6 +15,17 @@
 </template>
 
 <style>
+
+.listitem-box {
+    > .el-row {
+        line-height: 40px;
+        font-size: 14px;
+        border-bottom: 1px dashed #ccc;
+
+        > .el-col {
+        }
+    }
+}
 
 </style>
 
