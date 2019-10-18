@@ -25,11 +25,11 @@ export default {
     , status: [
         {
             label: '已完成'
-            , value: true
+            , value: 1
         }
         , {
             label: '未完成'
-            , value: false
+            , value: 0
         }
     ]
 

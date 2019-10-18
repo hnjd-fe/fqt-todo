@@ -34,6 +34,10 @@ let mixin = {
             , uid: localStorage.getItem( 'uid' )
 
             , typemap: typemap
+            , addVisible: [ false, false, false, false ]
+			, itemjson: null
+			, filterStatsu: 0
+
         }
     }
     , components: {
@@ -98,7 +102,7 @@ let mixin = {
             });
         }
         , updateFullList( page = 1, id ) {
-            db.fullList( page, 50, id )
+            db.fullList( page, 50, id, this.filterStatsu )
             .then( ( data )=>{
                 this.listData = data.data;
 				this.listTotal = data.total;

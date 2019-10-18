@@ -10,9 +10,21 @@
                 <span>{{$t('totalLabel')}} </span><span>{{fullTotal}}</span>
                 <span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
             </el-col>
-            <el-col :span="10" style="text-align:right;">
-			&nbsp;
-            </el-col>
+			<el-col :span="10" style="text-align:right;">
+				<el-select v-model="filterStatsu" placeholder="请选择">
+					<el-option
+						label="全部"
+						:value="-1">
+					</el-option>
+					<el-option
+						v-for="( item, index ) in typemap.status"
+						:key="index"
+						:label="item.label"
+						:value="item.value">
+					</el-option>
+				</el-select>
+					&nbsp;
+			</el-col>
             <el-col :span="4" style="text-align:right;">
                   <el-input
                       :placeholder="$t('searchPlaceholder')"
@@ -129,8 +141,6 @@ export default {
     , data() {
         return {
             packInfo: packInfo
-            , addVisible: [ false, false, false, false ]
-			, itemjson: null
         }
     }
     , mounted(){

@@ -4,12 +4,15 @@
             <!--<label>-->
                 <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
-                        v-model="sitem.status" 
+						v-model="sitem.status"
+						:checked="setStatus( sitem.status )"
                         label="" 
                         true-label="" 
                         false-label="" 
+						:true-value="1"
+						:false-value="0"
                         round 
-                        @change="onChange( $event, sitem, sindex )"
+                        @change="onChange( $event, sitem, sindex, this )"
                         />
                 </el-col>
                 <el-col :span="17">
@@ -44,6 +47,7 @@
 <script>
 
 import modifyMixin from '@src/mixin/modify.js'
+import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ modifyMixin ]
@@ -58,6 +62,9 @@ export default {
 	, methods: {
 		updateTotal() {
 		}
+		, setStatus( status ){
+			return status ? true : false;
+		}
 		, onSubmit() {
 			return false;
 		}
@@ -67,9 +74,11 @@ export default {
         , onEdit( evt, sitem, sindex ){
             this.edit && this.edit( this.index, sitem, sindex )
         }
-        , onChange( evt, sitem, sindex ){
-            sitem.updateDate = Date.now();
-            this.updateItem( sitem.id, sitem ).then( ()=>{
+        , onChange( evt, sitem, sindex, ele ){
+
+			sitem.status = sitem.status ? 1 : 0;
+
+            this.updateItem( sitem.id, sitem).then( ()=>{
 				this.update && this.update();
 			});
         }
