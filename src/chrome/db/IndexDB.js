@@ -73,7 +73,7 @@ export default class IndexDB extends BaseDB {
                     let ltext = text.toLowerCase();
                     if( 
                         ( note.note && (note.note).toLowerCase().indexOf( ltext ) > -1 )
-                        || ( note.type && (note.type ).toLowerCase().indexOf( ltext ) > -1 )
+                        || ( note.type && (note.type ).toString().toLowerCase().indexOf( ltext ) > -1 )
                     ){
                         r.unshift( note );
                     }

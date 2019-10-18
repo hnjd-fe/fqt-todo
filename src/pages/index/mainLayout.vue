@@ -10,7 +10,10 @@
                 <span>{{$t('totalLabel')}} </span><span>{{fullTotal}}</span>
                 <span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
             </el-col>
-            <el-col :span="14" style="text-align:right;">
+            <el-col :span="10" style="text-align:right;">
+			&nbsp;
+            </el-col>
+            <el-col :span="4" style="text-align:right;">
                   <el-input
                       :placeholder="$t('searchPlaceholder')"
                       v-model="searchText"
