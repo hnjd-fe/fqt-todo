@@ -48,7 +48,7 @@ export default {
 			console.log( this.form.note, Date.now() );
 			if( !this.form.note ) {
 				this.$message({
-					message: '请输入内容！',
+					message: '请输入任务内容！',
 					type: 'warning'
 				});
 				return;

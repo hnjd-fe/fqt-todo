@@ -9,10 +9,26 @@
 	  >
 	  <el-row class="demo-drawer__content">
 		  <el-col>
-			  <el-form :model="form">
+			  <el-form :model="form"  @submit.native.prevent>
 				  <el-form-item >
-					  <el-input v-model="form.note" autocomplete="off"></el-input>
+					  <el-input v-model="form.note" autocomplete="off"
+						placeholder="请输入任务，按Enter键完成"
+						@keyup.enter.native="onSubmit()"
+					  ></el-input>
 				  </el-form-item>
+
+				<el-form-item style="padding: 20px 0 10px 0;">
+					<el-date-picker
+						v-model="daterange"
+						type="datetimerange"
+						range-separator="至"
+						start-placeholder="开始日期"
+						end-placeholder="结束日期"
+						@change="onDateChange"
+						>
+					</el-date-picker>
+				</el-form-item>
+
 				<el-form-item>
 					<el-radio-group v-model="form.type">
 						<el-radio 
@@ -33,10 +49,9 @@
 					</el-radio-group>
 				</el-form-item>
 
-
 			  </el-form>
 			  <div class="demo-drawer__footer">
-				  <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+				  <el-button type="primary" @click="onSubmit()">确 定</el-button>
 				  <el-button @click="onClose()">取 消</el-button>
 			  </div>
 		  </el-col>
@@ -68,6 +83,7 @@
 <script>
 
 import modifyMixin from '@src/mixin/modify.js'
+import jsonUitls from 'json-utilsx'
 
 export default {
     mixins: [ modifyMixin ]
@@ -76,7 +92,9 @@ export default {
 		isedit: function( newv, oldv ){
 			this.dialog = !!newv;
 			if( newv ) {
-				this.form = newv;
+				this.form = jsonUitls.clone( newv );
+
+				this.daterange = [ this.moment( newv.startDate )._d, this.moment( newv.endDate )._d ];
 			}else{
 				this.form = {};
 			}
@@ -89,6 +107,7 @@ export default {
 			loading: false,
 			form: {
 			},
+			daterange: [ this.moment()._d, this.moment().add( 1, 'days')._d ],
 			formLabelWidth: '80px'
 		};
 	}
@@ -98,35 +117,25 @@ export default {
 		, handleClose(done) {
 			this.onClose();
 		}
+		, onDateChange() {
+			console.log( 'onDateChange', this.daterange );
+			this.form.startDate = this.daterange[0].getTime();
+			this.form.endDate = this.daterange[1].getTime();
+		}
 		, onSubmit() {
-			console.log( this.form.note, Date.now() );
+			console.log( 'onSubmit', this.form.note, Date.now() );
 			if( !this.form.note ) {
 				this.$message({
-					message: '请输入内容！',
+					message: '请输入任务内容！',
 					type: 'warning'
 				});
 				return;
 			}
-			let json = { 
-				note: this.form.note 
-				, type: this.index
-				, status: 0
-			}
 
-			this.edititem( json ).then( ( json )=>{
-					this.$message({
-						message: '数据添加成功',
-						type: 'success'
-					});
-					this.onBlur( null, json );
-					this.update && this.update( json, this.index, this.item  );
-				}, ()=>{
-					this.$message({
-						message: '添加数据时出错',
-						type: 'error'
-					});
-				}
-			);
+            this.updateItem( this.form.id, this.form ).then( ( json )=>{
+				this.onClose();
+				this.update && this.update();
+			});
 
 			return false;
 		}

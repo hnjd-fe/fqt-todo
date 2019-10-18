@@ -13,7 +13,7 @@
                         />
                 </el-col>
                 <el-col :span="17">
-                {{sitem.note}}
+                {{sitem.note}}&nbsp;
                 </el-col>
                 <el-col :span="6" style="text-align: right; padding-right: 5px; white-space: nowrap;">
                 {{moment(parseInt(sitem.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
@@ -47,7 +47,7 @@ import modifyMixin from '@src/mixin/modify.js'
 
 export default {
     mixins: [ modifyMixin ]
-	, props: [ "index", "item", "list", "edit" ]
+	, props: [ "index", "item", "list", "edit", "update" ]
 	, data() {
 		return {
 			form: {
@@ -69,7 +69,9 @@ export default {
         }
         , onChange( evt, sitem, sindex ){
             sitem.updateDate = Date.now();
-            this.updateItem( sitem.id, sitem );
+            this.updateItem( sitem.id, sitem ).then( ()=>{
+				this.update && this.update();
+			});
         }
 	}
 	, mounted(){

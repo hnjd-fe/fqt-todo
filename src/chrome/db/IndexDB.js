@@ -151,7 +151,7 @@ export default class IndexDB extends BaseDB {
                     , width: 100
                     , height: 100
                     , startDate: dateStr
-                    , endDate: dateStr
+                    , endDate: moment().add( '1', 'days' )._d.getTime()
                     , createDate: dateStr
                     , updateDate: dateStr
                 }

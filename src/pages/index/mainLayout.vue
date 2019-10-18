@@ -54,6 +54,7 @@
 					:item="item" 
 					:list="fqtData[index]"
 					:edit="onEditItem"
+					:update="updateList"
 					/>
 
             </el-col>
@@ -61,6 +62,7 @@
 		<EditItemComp 
 		:isedit="itemjson"
 		:close="closeEdit"
+		:update="updateList"
 		/>
 
     </el-main>
