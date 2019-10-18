@@ -55,8 +55,13 @@
 					:list="fqtData[index]"
 					:edit="onEditItem"
 					/>
+
             </el-col>
         </el-row>
+		<EditItemComp 
+		:isedit="itemjson"
+		:close="closeEdit"
+		/>
 
     </el-main>
 		<!--<el-pagination
@@ -118,6 +123,7 @@ export default {
         return {
             packInfo: packInfo
             , addVisible: [ false, false, false, false ]
+			, itemjson: null
         }
     }
     , mounted(){
@@ -139,6 +145,11 @@ export default {
 
 		, onEditItem( type, item, sindex ) {
 			console.log( 'onEditItem', type, item, sindex );
+			this.itemjson = item;
+		}
+
+		, closeEdit() {
+			this.itemjson = null;
 		}
 
 		, hideMethod( type, item, json ) {
