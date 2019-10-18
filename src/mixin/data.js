@@ -115,8 +115,7 @@ let mixin = {
 				for( let k in tmp ){
 					this.$set( this.fqtData, k, tmp[k] );
 				}
-
-				console.log( 'fulllist fqtData', this.fqtData );
+				//console.log( 'fulllist fqtData', this.fqtData );
             });
         }
 

@@ -2,6 +2,7 @@
 import db from '@src/chrome/db.js'
 import typemap from '@src/data/typemap.js'
 import moment from '@src/chrome/utils/moment.js'
+import md5 from '@src/chrome/utils/md5.js'
 
 let mixin = {
     data() {
@@ -11,6 +12,8 @@ let mixin = {
     , methods: {
         moment
         , addItem( json ) {
+            json.md5 = md5( json.note + Date.now() );
+            console.log( 'addItem', json );
             return new Promise( ( resolve, reject ) => {
                 db.add( json ).then( ( json )=> {
                     resolve( json );

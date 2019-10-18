@@ -2,7 +2,7 @@
     <div class="listitem-box" >
         <el-row v-for="(item, sindex) in list" :key="sindex">
             <label>
-                <el-col :span="2" style="text-align: center;" >
+                <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
                         v-model="item.status" 
                         label="" 
@@ -12,7 +12,7 @@
                         @change="onChange( $event, item, sindex )"
                         />
                 </el-col>
-                <el-col :span="16">
+                <el-col :span="17">
                 {{item.note}}
                 </el-col>
                 <el-col :span="6" style="text-align: right; padding-right: 5px;">
