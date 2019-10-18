@@ -5,14 +5,12 @@
                 <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
 						v-model="sitem.status"
-						:checked="setStatus( sitem.status )"
-                        label="" 
                         true-label="" 
                         false-label="" 
 						:true-value="1"
 						:false-value="0"
                         round 
-                        @change="onChange( $event, sitem, sindex, this )"
+                        @change.self="onChange( $event, sitem, sindex, this )"
                         />
                 </el-col>
                 <el-col :span="17">
@@ -75,10 +73,13 @@ export default {
             this.edit && this.edit( this.index, sitem, sindex )
         }
         , onChange( evt, sitem, sindex, ele ){
+			console.log( '111', evt.currentTarget );
+			console.dir( evt );
 
-			sitem.status = sitem.status ? 1 : 0;
+			let tmp = jsonUtils.clone( sitem );
+			tmp.status = tmp.status ? 1 : 0;
 
-            this.updateItem( sitem.id, sitem).then( ()=>{
+            this.updateItem( tmp.id, tmp ).then( ()=>{
 				this.update && this.update();
 			});
         }
