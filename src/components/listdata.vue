@@ -1,15 +1,24 @@
 <template>
     <div class="listitem-box" >
-        <el-row v-for="(item, index) in list" :key="index">
-            <el-col :span="2" style="text-align: center;" >
-                <el-checkbox v-model="item.status" label="" true-label="" false-label="" round />
-            </el-col>
-            <el-col :span="16">
-            {{item.note}}
-            </el-col>
-            <el-col :span="6" style="text-align: right; padding-right: 5px;">
-            {{moment(parseInt(item.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
-            </el-col>
+        <el-row v-for="(item, sindex) in list" :key="sindex">
+            <label>
+                <el-col :span="2" style="text-align: center;" >
+                    <el-checkbox 
+                        v-model="item.status" 
+                        label="" 
+                        true-label="" 
+                        false-label="" 
+                        round 
+                        @change="onChange( $event, item, sindex )"
+                        />
+                </el-col>
+                <el-col :span="16">
+                {{item.note}}
+                </el-col>
+                <el-col :span="6" style="text-align: right; padding-right: 5px;">
+                {{moment(parseInt(item.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
+                </el-col>
+            </label>
         </el-row>
     </div>
 </template>
@@ -52,6 +61,11 @@ export default {
 		, onBlur() {
 			this.hide && this.hide( this.index, this.item );
 		}
+        , onChange( evt, item, sindex ){
+            console.log( 'onChange', item, sindex );
+            item.updateDate = Date.now();
+            this.updateItem( item.id, item );
+        }
 	}
 	, mounted(){
 	}

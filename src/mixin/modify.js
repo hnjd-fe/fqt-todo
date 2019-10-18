@@ -19,6 +19,16 @@ let mixin = {
                 });
             });
         }
+        , updateItem( id, json ) {
+            return new Promise( ( resolve, reject ) => {
+                db.update( id, json ).then( ( r )=> {
+                    resolve( r );
+                }).catch( ()=>{
+                    reject( json );
+                });
+            });
+        }
+
     }
 }
 

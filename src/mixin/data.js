@@ -102,7 +102,6 @@ let mixin = {
 				this.listTotal = data.total;
 				this.page = 1;
 
-				this.fqtData = {};
 				let tmp = {};
 				this.listData.map( ( item ) => {
 					if( !( item.type in tmp) ){
