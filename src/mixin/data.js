@@ -104,7 +104,7 @@ let mixin = {
 				this.listTotal = data.total;
 				this.page = 1;
 
-				let tmp = {};
+				let tmp = { "0": [], "1": [], "2": [], "3": [] };
 				this.listData.map( ( item ) => {
 					if( !( item.type in tmp) ){
 						tmp[ item.type ] = [];
@@ -117,6 +117,7 @@ let mixin = {
 				for( let k in tmp ){
 					this.$set( this.fqtData, k, tmp[k] );
 				}
+				//console.log( this.fqtData );
 				//console.log( 'fulllist fqtData', this.fqtData );
             });
         }

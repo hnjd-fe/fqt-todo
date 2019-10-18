@@ -122,6 +122,8 @@ import moment from '@src/chrome/utils/moment.js'
 import config from '@src/chrome/config'
 import dataMixin from '@src/mixin/data.js'
 
+let tmer;
+
 export default {
     mixins: [ dataMixin ]
     , data() {
@@ -162,7 +164,11 @@ export default {
 		}
 
 		, updateList( json, type, item ){
-			this.updateFullList( 1, this.$route.query.id );
+			tmer && clearTimeout( tmer );
+
+			tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
 		}
 
         , onDeleteItem( evt, id, item ){
