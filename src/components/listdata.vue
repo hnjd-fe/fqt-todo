@@ -1,7 +1,7 @@
 <template>
     <div class="listitem-box" >
         <el-row v-for="(sitem, sindex) in list" :key="sindex">
-            <label>
+            <!--<label>-->
                 <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
                         v-model="sitem.status" 
@@ -21,7 +21,7 @@
                     @click="onEdit( $event, sitem, sindex )"
                 ></el-button>
                 </el-col>
-            </label>
+            <!--</label>-->
         </el-row>
     </div>
 </template>

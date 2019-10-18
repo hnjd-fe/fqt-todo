@@ -1,12 +1,20 @@
 <template>
 	<el-drawer
-	  title="编辑任务"
 	  :before-close="handleClose"
 	  :visible.sync="dialog"
 	  direction="rtl"
 	  custom-class="demo-drawer"
 	  ref="drawer"
+	  :show-close="false"
 	  >
+	  <el-row slot="title" class="dtitle">
+		  <el-col :span="22">
+		  	编辑任务
+		  </el-col>
+		  <el-col :span="2" style="text-align: center; white-space: nowrap">
+			  <el-link type="danger" @click="onDelete()">删除</el-link>
+		  </el-col>
+	  </el-row>
 	  <el-row class="demo-drawer__content">
 		  <el-col>
 			  <el-form :model="form"  @submit.native.prevent>
@@ -60,6 +68,10 @@
 </template>
 
 <style>
+
+.dtitle {
+	font-size: 14px;
+}
 
 .el-drawer__header {
 	margin-bottom: 0px;	
@@ -122,6 +134,17 @@ export default {
 			this.form.startDate = this.daterange[0].getTime();
 			this.form.endDate = this.daterange[1].getTime();
 		}
+		, onDelete(){
+			this.$confirm('确定要删除任务吗？').then( ()=>{
+				console.log( 'onDelete', Date.now() );
+
+				this.deleteItem( this.form.id, this.form.md5 ).then( ()=>{
+					this.onClose();
+					this.update && this.update();
+				});
+			}, ()=>{
+			});
+		}
 		, onSubmit() {
 			console.log( 'onSubmit', this.form.note, Date.now() );
 			if( !this.form.note ) {
@@ -138,9 +161,6 @@ export default {
 			});
 
 			return false;
-		}
-		, onBlur( evt, json ) {
-			this.close && this.close( this.index, this.item, json );
 		}
 		, onClose( evt, json ){
 			this.close && this.close( this.index, this.item, json );

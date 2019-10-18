@@ -32,7 +32,15 @@ let mixin = {
                 });
             });
         }
-
+        , deleteItem( id, md5 ) {
+            return new Promise( ( resolve, reject ) => {
+                db.deleteItem( id, md5 ).then( ()=> {
+                    resolve( id, md5 );
+                }).catch( ()=>{
+                    reject( id );
+                });
+            });
+        }
     }
 }
 
