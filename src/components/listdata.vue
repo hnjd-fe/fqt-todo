@@ -1,22 +1,25 @@
 <template>
     <div class="listitem-box" >
-        <el-row v-for="(item, sindex) in list" :key="sindex">
+        <el-row v-for="(sitem, sindex) in list" :key="sindex">
             <label>
                 <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
-                        v-model="item.status" 
+                        v-model="sitem.status" 
                         label="" 
                         true-label="" 
                         false-label="" 
                         round 
-                        @change="onChange( $event, item, sindex )"
+                        @change="onChange( $event, sitem, sindex )"
                         />
                 </el-col>
                 <el-col :span="17">
-                {{item.note}}
+                {{sitem.note}}
                 </el-col>
-                <el-col :span="6" style="text-align: right; padding-right: 5px;">
-                {{moment(parseInt(item.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
+                <el-col :span="6" style="text-align: right; padding-right: 5px; white-space: nowrap;">
+                {{moment(parseInt(sitem.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
+                <el-button  icon="el-icon-edit" circle style="zoom:.7"
+                    @click="onEdit( $event, sitem, sindex )"
+                ></el-button>
                 </el-col>
             </label>
         </el-row>
@@ -44,7 +47,7 @@ import modifyMixin from '@src/mixin/modify.js'
 
 export default {
     mixins: [ modifyMixin ]
-	, props: [ "index", "item", "list" ]
+	, props: [ "index", "item", "list", "edit" ]
 	, data() {
 		return {
 			form: {
@@ -61,10 +64,12 @@ export default {
 		, onBlur() {
 			this.hide && this.hide( this.index, this.item );
 		}
-        , onChange( evt, item, sindex ){
-            console.log( 'onChange', item, sindex );
-            item.updateDate = Date.now();
-            this.updateItem( item.id, item );
+        , onEdit( evt, sitem, sindex ){
+            this.edit && this.edit( this.index, sitem, sindex )
+        }
+        , onChange( evt, sitem, sindex ){
+            sitem.updateDate = Date.now();
+            this.updateItem( sitem.id, sitem );
         }
 	}
 	, mounted(){

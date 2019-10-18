@@ -53,6 +53,7 @@
 					:index="index" 
 					:item="item" 
 					:list="fqtData[index]"
+					:edit="onEditItem"
 					/>
             </el-col>
         </el-row>
@@ -135,6 +136,10 @@ export default {
         , onAddItem( evt, type ) {
             this.$set( this.addVisible, type, !this.addVisible[ type ]  );
         }
+
+		, onEditItem( type, item, sindex ) {
+			console.log( 'onEditItem', type, item, sindex );
+		}
 
 		, hideMethod( type, item, json ) {
             this.$set( this.addVisible, type, false  );
