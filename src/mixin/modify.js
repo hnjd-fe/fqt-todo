@@ -7,6 +7,7 @@ import md5 from '@src/chrome/utils/md5.js'
 let mixin = {
     data() {
         return {
+			typemap
         }
     }
     , methods: {

@@ -7,32 +7,39 @@
 	  custom-class="demo-drawer"
 	  ref="drawer"
 	  >
-	  <div class="demo-drawer__content">
-		  <el-form :model="form">
-			  <el-form-item label="活动名称" :label-width="formLabelWidth">
-				  <el-input v-model="form.name" autocomplete="off"></el-input>
-			  </el-form-item>
-			  <el-form-item label="活动区域" :label-width="formLabelWidth">
-				  <el-select v-model="form.region" placeholder="请选择活动区域">
-					  <el-option label="区域一" value="shanghai"></el-option>
-					  <el-option label="区域二" value="beijing"></el-option>
-				  </el-select>
-			  </el-form-item>
-		  </el-form>
-		  <div class="demo-drawer__footer" style="padding-left: 15px;">
-			  <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
-			  <el-button @click="onClose()">取 消</el-button>
-		  </div>
-	  </div>
+	  <el-row class="demo-drawer__content">
+		  <el-col>
+			  <el-form :model="form">
+				  <el-form-item >
+					  <el-input v-model="form.name" autocomplete="off"></el-input>
+				  </el-form-item>
+				<el-form-item>
+					<template>
+						<el-radio-group v-model="type">
+							<el-radio v-for="(sitem, sindex) in typemap.item" :label="sindex" >{{sitem.label}}</el-radio>
+						</el-radio-group>
+					</template>
+
+				</el-form-item>
+			  </el-form>
+			  <div class="demo-drawer__footer">
+				  <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+				  <el-button @click="onClose()">取 消</el-button>
+			  </div>
+		  </el-col>
+	  </el-row>
 	</el-drawer>
 </template>
 
 <style>
 
-.edititem-box {
-	position: absolute;
-	top: 0;
-	width: 100%;
+.el-drawer__header {
+	margin-bottom: 0px;	
+}
+
+.demo-drawer__content {
+	padding:20px;
+	padding-top:15px;
 }
 
 </style>
@@ -48,6 +55,9 @@ export default {
 		isedit: function( newv, oldv ){
 			console.log( newv, oldv );
 			this.dialog = !!newv;
+			if( newv ) {
+				this.type = newv.type;
+			}
 		}
 	}
 	, data() {
@@ -55,23 +65,7 @@ export default {
 			table: false,
 			dialog: false,
 			loading: false,
-			gridData: [{
-				date: '2016-05-02',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1518 弄'
-			}, {
-				date: '2016-05-04',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1518 弄'
-			}, {
-				date: '2016-05-01',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1518 弄'
-			}, {
-				date: '2016-05-03',
-				name: '王小虎',
-				address: '上海市普陀区金沙江路 1518 弄'
-			}],
+			type: 0,
 			form: {
 				name: '',
 				region: '',
