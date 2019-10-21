@@ -18,7 +18,6 @@
                     </el-select>
                 </el-col>
                 <el-col :span="8">
-
                     <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
                         <el-option
                             label="全部状态"
@@ -53,30 +52,45 @@
 	>
         <el-row v-for="( item, index ) in listData" :key="item.id"
 		v-if="!loading"
+        :class="`type-box type-box-${item.type}`"
         >
-            <el-col :span="2" style="text-align: center; ">
-                {{index+1}}.
+            <el-col style="padding:0">
+                <el-row style="vertical-align: middle; line-height: 20px;" class="type-header" >
+                    <el-col :span="2" style="text-align: center; ">
+                        {{index+1}}.
+                    </el-col>
+                    <el-col :span="10" >
+                        <label>{{typemap.item[item.type].label}}</label>
+                    </el-col>
+                    <el-col :span="10" style="text-align: right;" >
+                        <label>{{typemap.status[item.status ? 1 : 0 ].label}}</label>
+                    </el-col>
+                    <el-col :span="2" class="source" style="text-align: center; ">
+                        <div>
+                            <a href="javascript:;" :title="$t('edit')"
+                                @click="onEditItem( $event, item, index )"
+                            >
+                                <span>{{$t('edit')}}</span>
+                            </a>
+                        </div>
+                    </el-col>
+                </el-row>
             </el-col>
-
-            <el-col :span="20" >
-                <div style="padding-bottom: 5px;">
-                    <label>类型：{{typemap.item[item.type].label}}</label>
-                    <label>状态：{{typemap.status[item.status ? 1 : 1].label}}</label>
-                </div>
+            <el-col :span="20" :offset="2" style="font-size: 14px;" >
                 <div>
                     <a :title="item.type" >
                         <span v-html="hightlightSearch(item.note, 1, item)"></span>
                     </a>
                 </div>
             </el-col>
-            <el-col :span="2" class="source" style="text-align: center; ">
-                <div>
-                    <a :href="'index.html?id='+item.id" :title="$t('edit')" target="_fqttodo_index" >
-                        <span>{{$t('edit')}}</span>
-                    </a>
-                </div>
-            </el-col>
+
         </el-row>
+
+		<EditItemComp 
+		:isedit="itemjson"
+		:close="closeEdit"
+		:update="updateList"
+		/>
 
 		<el-row
 			v-if="!listData.length && !loading"
@@ -167,10 +181,9 @@
 }
 
 .el-main .el-row:nth-child(even){
-    background-color: #ececec;
 }
 .el-main .el-row:nth-child(even) .source {
-    background-color: #ececec;
+    /*background-color: #ececec;*/
     padding-bottom: 5px;
 }
 
@@ -206,6 +219,10 @@
     font-size: 32px;
     color: #ccc;
 }
+
+.type-header {
+    font-size: 16px;
+}
 </style>
 
 <script>
@@ -214,6 +231,8 @@ import dataMixin from '@src/mixin/data.js'
 
 import moment from '@src/chrome/utils/moment.js'
 const packInfo = require( '@root/package.json' )
+
+let tmer;
 
 export default {
     props: [ "packInfo" ],
@@ -233,7 +252,19 @@ export default {
         this.initLogin();
     }
     , methods: {
-		afterUpdateList(){
+		closeEdit() {
+			this.itemjson = null;
+		}
+
+		, updateList( json, type, item ){
+			tmer && clearTimeout( tmer );
+
+			tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
+		}
+
+		, afterUpdateList(){
 			this.loading = false;
 
             if( ( this.listTotal > this.listPageSize ) ){

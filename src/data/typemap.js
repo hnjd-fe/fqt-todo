@@ -24,13 +24,14 @@ export default {
     ]
     , status: [
         {
-            label: '已完成'
-            , value: true
-        }
-        , {
             label: '未完成'
             , value: false
         }
+        , {
+            label: '已完成'
+            , value: true
+        }
+
     ]
 
 }

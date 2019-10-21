@@ -59,6 +59,15 @@ let mixin = {
                 });
             }
         }
+        , onAddItem( evt, type ) {
+            this.$set( this.addVisible, type, !this.addVisible[ type ]  );
+        }
+
+		, onEditItem( type, item, sindex ) {
+			console.log( 'onEditItem', type, item, sindex );
+			this.itemjson = item;
+		}
+
         , filterChange( status ){
             this.updateFullList( 1, this.$route.query.id );
 			store.set( 'status', status );

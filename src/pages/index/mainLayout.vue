@@ -156,21 +156,8 @@ export default {
                 this.paddingMain = 'padding-bottom: 50px;'
             }
 		}
-        , onAddItem( evt, type ) {
-            this.$set( this.addVisible, type, !this.addVisible[ type ]  );
-        }
-
-		, onEditItem( type, item, sindex ) {
-			console.log( 'onEditItem', type, item, sindex );
-			this.itemjson = item;
-		}
-
 		, closeEdit() {
 			this.itemjson = null;
-		}
-
-		, hideMethod( type, item, json ) {
-            this.$set( this.addVisible, type, false  );
 		}
 
 		, updateList( json, type, item ){
@@ -179,6 +166,10 @@ export default {
 			tmer = setTimeout( ()=>{
 				this.updateFullList( 1, this.$route.query.id );
 			}, 50 );
+		}
+
+		, hideMethod( type, item, json ) {
+            this.$set( this.addVisible, type, false  );
 		}
 
         , onDeleteItem( evt, id, item ){

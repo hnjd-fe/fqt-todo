@@ -11,7 +11,7 @@ const messages = {
         "popupPage": "popup page",
         "setting": "setting"
 
-		, "searchPlaceholder": "search task"
+		, "searchPlaceholder": "search all task"
 		, "nodata": "nothing in there"
 
         , "synchronous_short": "sync"
@@ -36,7 +36,7 @@ const messages = {
         "popupPage": "popup 页面",
         "setting": "设置"
 
-		, "searchPlaceholder": "查找任务"
+		, "searchPlaceholder": "查找全部任务"
 		, "nodata": "暂无数据"
 
         , "synchronous_short": "同步"
