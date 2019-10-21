@@ -61,7 +61,7 @@ let mixin = {
             this.updateFullList( 1, this.$route.query.id );
         }
 		, filterTypeChange( type ){
-			console.log( type );
+            this.updateFullList( 1, this.$route.query.id );
 		}
         , initLogin() {
             this.setDataItem( 'token' );
@@ -110,7 +110,7 @@ let mixin = {
             });
         }
         , updateFullList( page = 1, id ) {
-            db.fullList( page, 50, id, this.filterStatus )
+            db.fullList( page, 50, id, this.filterStatus, this.filterType )
             .then( ( data )=>{
                 this.listData = data.data;
 				this.listTotal = data.total;

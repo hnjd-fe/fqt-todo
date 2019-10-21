@@ -35,7 +35,7 @@ export default class IndexDB extends BaseDB {
 		return data;
 	}
 
-    fullList( page = 1, size = 50, id, status ){
+    fullList( page = 1, size = 50, id, status, type = -1 ){
         let offset = ( page - 1 ) * size;
 
         console.log( 'fullList', page, size, id, typeof status );
@@ -55,10 +55,16 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
             db[config.dbDataTableName].count(( count )=>{
-                let query = db[config.dbDataTableName];
+                let query = db[config.dbDataTableName].orderBy('updateDate').reverse();
 
+                /*if( type > -1 ){
+                    query = query.where( 'type' ).equals( type )
+                }
                 if( typeof status == 'boolean' ){
-                    query.where( 'status' ).equals( status ? 1 : 0 ).sortBy('updateDate')
+                    query = query.where( 'status' ).equals( status ? 1 : 0 )
+                }
+                if( typeof status == 'boolean' ){
+					query.sortBy('updateDate')
                      .then( ( data )=>{
                         data = data.reverse();
 						this.fixStatus( data );
@@ -66,10 +72,21 @@ export default class IndexDB extends BaseDB {
                             { data: data, total: count }
                         );
                     });
-                    return;
-                }
+					return;
+				}*/
+                if( typeof status == 'boolean' ){
+					let statusNum = status ? 1 : 0;
+					query = query.filter( ( item ) => {
+						return item.status == statusNum;
+					});
+				}
+				if( type > -1 ){
+					query = query.filter( ( item ) => {
+						return item.type == type;
+					});
+				}
 
-               query.orderBy('updateDate').reverse().offset( offset ).limit( size ).toArray().then( ( data )=>{
+              	query.offset( offset ).limit( size ).toArray().then( ( data )=>{
 					this.fixStatus( data );
                     resolve( 
                         { data: data, total: count }
