@@ -57,23 +57,6 @@ export default class IndexDB extends BaseDB {
             db[config.dbDataTableName].count(( count )=>{
                 let query = db[config.dbDataTableName].orderBy('updateDate').reverse();
 
-                /*if( type > -1 ){
-                    query = query.where( 'type' ).equals( type )
-                }
-                if( typeof status == 'boolean' ){
-                    query = query.where( 'status' ).equals( status ? 1 : 0 )
-                }
-                if( typeof status == 'boolean' ){
-					query.sortBy('updateDate')
-                     .then( ( data )=>{
-                        data = data.reverse();
-						this.fixStatus( data );
-                        resolve( 
-                            { data: data, total: count }
-                        );
-                    });
-					return;
-				}*/
                 if( typeof status == 'boolean' ){
 					let statusNum = status ? 1 : 0;
 					query = query.filter( ( item ) => {

@@ -4,12 +4,14 @@
             <el-col :span="24">
 				<el-form ref="form" :model="form" label-width="80px" @submit.native.prevent>
 					<el-input 
-						v-model.trim="form.note"
+						v-model="form.note"
 						suffix-icon="el-icon-enter"
 						v-focus
 						@blur="onBlur"
-						placeholder="请输入任务，按Enter键完成"
-						@keyup.enter.native="onSubmit()"
+						placeholder="请输入任务，按CTRL+Enter键完成"
+						type="textarea"
+						autosize
+						@keydown.ctrl.enter.native="onSubmit()"
 					></el-input>
 				</el-form>
             </el-col>
@@ -23,6 +25,8 @@
 	position: absolute;
 	top: 0;
 	width: 100%;
+    background: #fff;
+    z-index: 10;
 }
 
 </style>
@@ -89,7 +93,7 @@ export default {
 	, directives: {
 		focus: {
 			inserted: function (el) {
-				el.querySelector('input').focus()
+				el.querySelector('textarea').focus()
 			}
 		}
 	}

@@ -58,7 +58,7 @@
                 {{index+1}}.
             </el-col>
 
-            <el-col :span="18" >
+            <el-col :span="20" >
                 <div style="padding-bottom: 5px;">
                     <label>类型：{{typemap.item[item.type].label}}</label>
                     <label>状态：{{typemap.status[item.status ? 1 : 1].label}}</label>
@@ -69,7 +69,7 @@
                     </a>
                 </div>
             </el-col>
-            <el-col :span="4" class="source" style="text-align: center; ">
+            <el-col :span="2" class="source" style="text-align: center; ">
                 <div>
                     <a :href="'index.html?id='+item.id" :title="$t('edit')" target="_fqttodo_index" >
                         <span>{{$t('edit')}}</span>

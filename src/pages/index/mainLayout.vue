@@ -81,7 +81,7 @@
 		/>
 
     </el-main>
-		<!--<el-pagination
+		<el-pagination
 		  v-if="listData.length && !loading && listTotal > listPageSize"
 		  background
 		  layout="prev, pager, next"
@@ -90,7 +90,7 @@
 		  :current-page="listCurPage"
 		  @current-change="curListChange"
 		  >
-		</el-pagination>-->
+		</el-pagination>
 
   </el-container>
 </template>

@@ -21,10 +21,12 @@
 				  <el-form-item >
 					  <el-input 
 					  	autocomplete="off"
-						placeholder="请输入任务，按Enter键完成"
+						v-focus
 						v-model="form.note"
+						placeholder="请输入任务，按CTRL+Enter键完成"
 						type="textarea"
 						autosize
+						@keydown.ctrl.enter.native="onSubmit()"
 					  ></el-input>
 				  </el-form-item>
 
@@ -179,7 +181,7 @@ export default {
 	, directives: {
 		focus: {
 			inserted: function (el) {
-				el.querySelector('input').focus()
+				el.querySelector('textarea').focus()
 			}
 		}
 	}
