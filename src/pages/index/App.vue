@@ -11,7 +11,6 @@
                     <i class="el-icon-s-home"></i>{{$t('mainPage')}}
                   </el-menu-item>
                 </el-link>
-                <!--
                 <router-link to="importExport.html">
                   <el-menu-item index="2">
                     <i class="el-icon-upload2"></i>{{$t('importExport')}}
@@ -36,7 +35,6 @@
                     <i class="el-icon-folder-opened"></i>{{$t('popupPage')}} 
                   </el-menu-item>
                 </el-link>
-                -->
 
                 <router-link to="setting.html">
                   <el-menu-item index="5">
