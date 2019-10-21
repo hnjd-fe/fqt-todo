@@ -156,6 +156,7 @@ export default {
 			}
 
             this.updateItem( this.form.id, this.form ).then( ( json )=>{
+                console.log( 'edit update', this.form.id, this.form );
 				this.onClose();
 				this.update && this.update();
 			});

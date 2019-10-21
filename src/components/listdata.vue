@@ -4,11 +4,9 @@
             <!--<label>-->
                 <el-col :span="1" style="text-align: center;" >
                     <el-checkbox 
-						v-model="sitem.status"
+                        v-model="sitem.status"
                         true-label="" 
                         false-label="" 
-						:true-value="1"
-						:false-value="0"
                         round 
                         @change.self="onChange( $event, sitem, sindex, this )"
                         />
@@ -50,6 +48,13 @@ import jsonUtils from 'json-utilsx'
 export default {
     mixins: [ modifyMixin ]
 	, props: [ "index", "item", "list", "edit", "update" ]
+	, watch: {
+		list: function( newv, oldv ){
+			if( newv ) {
+			}else{
+			}
+		}
+	}
 	, data() {
 		return {
 			form: {
@@ -61,7 +66,7 @@ export default {
 		updateTotal() {
 		}
 		, setStatus( status ){
-			return status ? true : false;
+            return status ? true : false;
 		}
 		, onSubmit() {
 			return false;
@@ -72,14 +77,8 @@ export default {
         , onEdit( evt, sitem, sindex ){
             this.edit && this.edit( this.index, sitem, sindex )
         }
-        , onChange( evt, sitem, sindex, ele ){
-			console.log( '111', evt.currentTarget );
-			console.dir( evt );
-
-			let tmp = jsonUtils.clone( sitem );
-			tmp.status = tmp.status ? 1 : 0;
-
-            this.updateItem( tmp.id, tmp ).then( ()=>{
+        , onChange( evt, sitem, sindex, src ){
+            this.updateItem( sitem.id, sitem ).then( ()=>{
 				this.update && this.update();
 			});
         }

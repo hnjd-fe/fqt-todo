@@ -36,7 +36,7 @@ let mixin = {
             , typemap: typemap
             , addVisible: [ false, false, false, false ]
 			, itemjson: null
-			, filterStatsu: 0
+			, filterStatsu: false
 
         }
     }

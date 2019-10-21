@@ -55,6 +55,9 @@ export default class IndexDB extends BaseDB {
 
                 db[config.dbDataTableName].orderBy('updateDate').reverse().offset( offset ).limit( size ).toArray().then( ( data )=>{
                     console.log( 'list data', data );
+                        data.map( ( item ) => {
+                            item.status = item.status ? true : false;
+                        });
                     resolve( 
                         { data: data, total: count }
                     );
@@ -407,6 +410,7 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
 			let r;
+            json.status = json.status ? 1 : 0;
             db.transaction( 'rw', db[config.dbDataTableName], () => {
                db[config.dbDataTableName].where('id').equals( parseInt( id ) ).modify( ( data )=>{
 			   		for( let k in json ){
