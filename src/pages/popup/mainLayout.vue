@@ -197,7 +197,7 @@
 }
 
 .el-footer {
-    background-color: @headerBgColor;
+    background-color: #87d8ff;
     height: @barHeight!important;
     line-height: @barHeight;
 }
