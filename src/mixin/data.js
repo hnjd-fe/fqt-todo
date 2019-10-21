@@ -57,6 +57,12 @@ let mixin = {
                 });
             }
         }
+        , filterChange( status ){
+            this.updateFullList( 1, this.$route.query.id );
+        }
+		, filterTypeChange( type ){
+			console.log( type );
+		}
         , initLogin() {
             this.setDataItem( 'token' );
             this.setDataItem( 'username' );

@@ -4,7 +4,7 @@
       <el-header>
             <el-row>
                 <el-col :span="8">
-                    <el-select v-model="filterType" placeholder="请选择" @change="filterChange">
+                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange">
                         <el-option
                             label="全部类型"
                             :value="-1">
@@ -60,7 +60,8 @@
 
             <el-col :span="18" >
                 <div style="padding-bottom: 5px;">
-                    类型：{{typemap.item[item.type].label}}
+                    <label>类型：{{typemap.item[item.type].label}}</label>
+                    <label>状态：{{typemap.status[item.status ? 1 : 1].label}}</label>
                 </div>
                 <div>
                     <a :title="item.type" >
@@ -70,8 +71,8 @@
             </el-col>
             <el-col :span="4" class="source" style="text-align: center; ">
                 <div>
-                    <a :href="'index.html?id='+item.id" :title="$t('source')" target="_fqttodo_index" >
-                        <span>{{$t('source')}}</span>
+                    <a :href="'index.html?id='+item.id" :title="$t('edit')" target="_fqttodo_index" >
+                        <span>{{$t('edit')}}</span>
                     </a>
                 </div>
             </el-col>
@@ -232,8 +233,6 @@ export default {
         this.initLogin();
     }
     , methods: {
-        filterChange() {
-        },
 		afterUpdateList(){
 			this.loading = false;
 

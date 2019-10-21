@@ -26,6 +26,8 @@ const messages = {
 
         , "logout": "logout"
         , "login": "login"
+
+        , "edit": "edit"
 	},
 	zh: {
         "mainPage": "fqt-todo",
@@ -49,6 +51,8 @@ const messages = {
 
         , "logout": "退出"
         , "login": "登陆"
+
+        , "edit": "编辑"
 	}
 }
 
