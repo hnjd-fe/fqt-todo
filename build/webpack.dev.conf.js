@@ -24,6 +24,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     headers: {
         "Access-Control-Allow-Origin": "*"
     },
+    proxy: [
+        {
+            path: /\/(importExport|dataManage|settings).html/,
+            bypass: function(req, res, proxyOptions) {
+                if (req.headers.accept.indexOf('html') !== -1) {
+                    return '/index.html';
+                }
+            }
+        }
+    ],
     before: function(app) {
         //console.log( app );
         app.get('*.css', function(req, res) {

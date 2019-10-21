@@ -36,13 +36,13 @@
                     <i class="el-icon-folder-opened"></i>{{$t('popupPage')}} 
                   </el-menu-item>
                 </el-link>
+                -->
 
                 <router-link to="setting.html">
                   <el-menu-item index="5">
                     <i class="el-icon-setting"></i>{{$t('setting')}}
                   </el-menu-item>
                 </router-link>
-                -->
             </el-menu>
           </el-aside>
             <router-view @[this.globalVar.updateDevModeEventName]="devModeChange"></router-view>

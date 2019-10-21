@@ -149,7 +149,7 @@ export default {
     }
     , methods: {
         moment
-        , filterChange( status, src, evt ){
+        , filterChange( status ){
             this.updateFullList( 1, this.$route.query.id );
         }
 		, afterUpdateList(){
