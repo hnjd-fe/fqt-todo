@@ -19,9 +19,12 @@
 		  <el-col>
 			  <el-form :model="form"  @submit.native.prevent>
 				  <el-form-item >
-					  <el-input v-model="form.note" autocomplete="off"
+					  <el-input 
+					  	autocomplete="off"
 						placeholder="请输入任务，按Enter键完成"
-						@keyup.enter.native="onSubmit()"
+						v-model="form.note"
+						type="textarea"
+						autosize
 					  ></el-input>
 				  </el-form-item>
 

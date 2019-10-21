@@ -28,6 +28,13 @@ export default class IndexDB extends BaseDB {
         });
     }
 
+	fixStatus( data ){
+		data.map( ( item ) => {
+			item.status = item.status ? true : false;
+		});
+		return data;
+	}
+
     fullList( page = 1, size = 50, id, status ){
         let offset = ( page - 1 ) * size;
 
@@ -37,8 +44,7 @@ export default class IndexDB extends BaseDB {
             return new Promise( ( resolve, reject ) => {
                 let db = this.getDB();
                 db[config.dbDataTableName].where('id').equals( parseInt( id ) ).toArray().then( ( data )=>{
-                    console.log( data, id );
-                    
+					this.fixStatus( data );
                     resolve( { data: data, total: data.length }
                     );
                 });
@@ -49,17 +55,13 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
             db[config.dbDataTableName].count(( count )=>{
-                
-
-                 let query = db[config.dbDataTableName];
+                let query = db[config.dbDataTableName];
 
                 if( typeof status == 'boolean' ){
                     query.where( 'status' ).equals( status ? 1 : 0 ).sortBy('updateDate')
                      .then( ( data )=>{
                         data = data.reverse();
-                        data.map( ( item ) => {
-                            item.status = item.status ? true : false;
-                        });
+						this.fixStatus( data );
                         resolve( 
                             { data: data, total: count }
                         );
@@ -68,10 +70,7 @@ export default class IndexDB extends BaseDB {
                 }
 
                query.orderBy('updateDate').reverse().offset( offset ).limit( size ).toArray().then( ( data )=>{
-                    console.log( 'list data', data );
-                        data.map( ( item ) => {
-                            item.status = item.status ? true : false;
-                        });
+					this.fixStatus( data );
                     resolve( 
                         { data: data, total: count }
                     );

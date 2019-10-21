@@ -18,25 +18,16 @@
         <el-row v-for="( item, index ) in listData" :key="item.id"
 		v-if="!loading"
         >
-            <el-col :span="2" style="text-align: center; padding: 10px 0;">
+            <el-col :span="2" style="text-align: center; ">
                 {{index+1}}.
             </el-col>
 
-            <el-col :span="18" style="padding-bottom: 5px;">
-                <div v-if="item.status">
-                    <a :href="item.status" :title="item.type" style="display:block;padding-left:0!important;" target="_blank">
-                        <label v-html="hightlightSearch(item.type)"></label>
-                    </a>
-                        <span v-html="hightlightSearch(item.note, 1, item)"></span>
-                </div>
-                <div v-else>
-                    <a :title="item.type" style="display:block;padding-left:0!important;" >
-                        <label v-html="hightlightSearch(item.type)"></label>
-                    </a>
-                        <span v-html="hightlightSearch(item.note, 1, item)"></span>
-                </div>
+            <el-col :span="18" >
+                <a :title="item.type" >
+                    <span v-html="hightlightSearch(item.note, 1, item)"></span>
+                </a>
             </el-col>
-            <el-col :span="4" class="source">
+            <el-col :span="4" class="source" style="text-align: center; ">
                 <div>
                     <a :href="'index.html?id='+item.id" :title="$t('source')" target="_fqttodo_index" >
                         <span>{{$t('source')}}</span>
@@ -120,14 +111,19 @@
 .el-row {
     text-align: left;
 }
-.el-main .el-row a {
-    display: inline-block;
-    padding: 10px 10px;
-}
 .el-main .el-row a label {
     display: block;
     font-weight: bold;
 }
+
+.el-main .el-row pre {
+    margin: 0;
+}
+
+.el-main .el-row .el-col {
+    padding: 10px 0 10px;
+}
+
 .el-main .el-row:nth-child(even){
     background-color: #ececec;
 }

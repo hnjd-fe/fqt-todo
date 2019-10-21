@@ -1,6 +1,7 @@
 {
   "name": "fqt-todo",
   "version": "1.0.0",
+  "homepage": "https://github.com/hnjd-fe/fqt-todo",
   "description": "chrome browser plugin - four quadrant of time management todolist",
   "main": "index.js",
   "scripts": {

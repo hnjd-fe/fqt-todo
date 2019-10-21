@@ -136,6 +136,7 @@ let mixin = {
         }
 
         , hightlightSearch( text, isPre, item ){
+			text = (text || '').toString();
             text = text.replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
 
             //text = text.replace( /[\r\n]+/g, '<br />' );
