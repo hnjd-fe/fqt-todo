@@ -3,8 +3,8 @@
   <el-container>
       <el-header>
             <el-row>
-                <el-col :span="8">
-                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange">
+                <el-col :span="7">
+                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange" style="width:95%;">
                         <el-option
                             label="全部类型"
                             :value="-1">
@@ -17,8 +17,8 @@
                         </el-option>
                     </el-select>
                 </el-col>
-                <el-col :span="8">
-                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
+                <el-col :span="7">
+                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange" style="width:95%;">
                         <el-option
                             label="全部状态"
                             :value="-1">
@@ -31,7 +31,6 @@
                         </el-option>
                     </el-select>
                 </el-col>
-
                 <el-col :span="8">
                   <el-input
                       :placeholder="$t('searchPlaceholder')"
@@ -41,6 +40,9 @@
                       <i slot="prefix" class="el-input__icon el-icon-search"></i>
                   </el-input>    
 
+                </el-col>
+                <el-col :span="2" style="text-align: center">
+                    <el-button type="primary"  icon="el-icon-plus" circle style="zoom:.8"></el-button>
                 </el-col>
             </el-row>
             </el-row>
@@ -65,13 +67,13 @@
                     <el-col :span="10" style="text-align: right;" >
                         <label>{{typemap.status[item.status ? 1 : 0 ].label}}</label>
                     </el-col>
-                    <el-col :span="2" class="source" style="text-align: center; ">
-                        <div>
-                            <a href="javascript:;" :title="$t('edit')"
-                                @click="onEditItem( $event, item, index )"
-                            >
-                                <span>{{$t('edit')}}</span>
-                            </a>
+                    <el-col :span="2" class="source" style="text-align: center; padding:0; ">
+                        <div style="margin-top: 3px;">
+                            <el-button  icon="el-icon-edit" 
+                            :title="$t('edit')"
+                            @click="onEditItem( $event, item, index )"
+                            style="zoom:.8"
+                            circle></el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -194,6 +196,7 @@
     height: @barHeight!important;
     line-height: @barHeight;
     margin: -1px -1px 0 -1px;
+    border-bottom: 1px solid #ececec;
 }
 
 .el-footer {
