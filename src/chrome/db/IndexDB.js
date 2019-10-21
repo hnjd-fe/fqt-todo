@@ -49,11 +49,25 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
             db[config.dbDataTableName].count(( count )=>{
-				 db[config.dbDataTableName].where('status').equals( 0 ).toArray().then( ( data )=>{
-				 	console.log( 'status',  status, data );
-				 });
+                
 
-                db[config.dbDataTableName].orderBy('updateDate').reverse().offset( offset ).limit( size ).toArray().then( ( data )=>{
+                 let query = db[config.dbDataTableName];
+
+                if( typeof status == 'boolean' ){
+                    query.where( 'status' ).equals( status ? 1 : 0 ).sortBy('updateDate')
+                     .then( ( data )=>{
+                        data = data.reverse();
+                        data.map( ( item ) => {
+                            item.status = item.status ? true : false;
+                        });
+                        resolve( 
+                            { data: data, total: count }
+                        );
+                    });
+                    return;
+                }
+
+               query.orderBy('updateDate').reverse().offset( offset ).limit( size ).toArray().then( ( data )=>{
                     console.log( 'list data', data );
                         data.map( ( item ) => {
                             item.status = item.status ? true : false;
