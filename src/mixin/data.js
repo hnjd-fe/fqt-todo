@@ -5,6 +5,8 @@ import ListDataComp from '@src/components/listdata.vue';
 import db from '@src/chrome/db.js'
 import typemap from '@src/data/typemap.js'
 
+import store from 'store'
+
 let mixin = {
     data() {
         return {
@@ -37,7 +39,7 @@ let mixin = {
             , addVisible: [ false, false, false, false ]
 			, itemjson: null
 
-			, filterStatus: false
+			, filterStatus: typeof store.get( 'status' ) != 'undefined' ? store.get( 'status' ) : false
 			, filterType: -1
 
         }
@@ -59,9 +61,11 @@ let mixin = {
         }
         , filterChange( status ){
             this.updateFullList( 1, this.$route.query.id );
+			store.set( 'status', status );
         }
 		, filterTypeChange( type ){
             this.updateFullList( 1, this.$route.query.id );
+			store.set( 'type', type );
 		}
         , initLogin() {
             this.setDataItem( 'token' );
