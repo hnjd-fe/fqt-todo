@@ -195,7 +195,7 @@
     color: #333;
     height: @barHeight!important;
     line-height: @barHeight;
-    margin: -1px -1px 0 -1px;
+    margin: -1px -1px 1px -1px;
     border-bottom: 1px solid #ececec;
 }
 
