@@ -2,13 +2,49 @@
 <el-container style="height: 500px; border: 1px solid #eee" class="popup_layout">
   <el-container>
       <el-header>
-          <el-input
-              :placeholder="$t('searchPlaceholder')"
-              v-model="searchText"
-              @input="onTextInput"
-              >
-              <i slot="prefix" class="el-input__icon el-icon-search"></i>
-          </el-input>    
+            <el-row>
+                <el-col :span="8">
+                    <el-select v-model="filterType" placeholder="请选择" @change="filterChange">
+                        <el-option
+                            label="全部类型"
+                            :value="-1">
+                        </el-option>
+                        <el-option
+                            v-for="( item, index ) in typemap.item"
+                            :key="index"
+                            :label="item.label"
+                            :value="index">
+                        </el-option>
+                    </el-select>
+                </el-col>
+                <el-col :span="8">
+
+                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
+                        <el-option
+                            label="全部状态"
+                            :value="-1">
+                        </el-option>
+                        <el-option
+                            v-for="( item, index ) in typemap.status"
+                            :key="index"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-col>
+
+                <el-col :span="8">
+                  <el-input
+                      :placeholder="$t('searchPlaceholder')"
+                      v-model="searchText"
+                      @input="onTextInput"
+                      >
+                      <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                  </el-input>    
+
+                </el-col>
+            </el-row>
+            </el-row>
       </el-header>
     
     <el-main 
@@ -23,9 +59,14 @@
             </el-col>
 
             <el-col :span="18" >
-                <a :title="item.type" >
-                    <span v-html="hightlightSearch(item.note, 1, item)"></span>
-                </a>
+                <div style="padding-bottom: 5px;">
+                    类型：{{typemap.item[item.type].label}}
+                </div>
+                <div>
+                    <a :title="item.type" >
+                        <span v-html="hightlightSearch(item.note, 1, item)"></span>
+                    </a>
+                </div>
             </el-col>
             <el-col :span="4" class="source" style="text-align: center; ">
                 <div>
@@ -191,6 +232,8 @@ export default {
         this.initLogin();
     }
     , methods: {
+        filterChange() {
+        },
 		afterUpdateList(){
 			this.loading = false;
 

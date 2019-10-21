@@ -36,7 +36,9 @@ let mixin = {
             , typemap: typemap
             , addVisible: [ false, false, false, false ]
 			, itemjson: null
-			, filterStatsu: false
+
+			, filterStatus: false
+			, filterType: -1
 
         }
     }
@@ -102,7 +104,7 @@ let mixin = {
             });
         }
         , updateFullList( page = 1, id ) {
-            db.fullList( page, 50, id, this.filterStatsu )
+            db.fullList( page, 50, id, this.filterStatus )
             .then( ( data )=>{
                 this.listData = data.data;
 				this.listTotal = data.total;

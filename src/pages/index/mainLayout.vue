@@ -11,7 +11,7 @@
                 <span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
             </el-col>
 			<el-col :span="10" style="text-align:right;">
-				<el-select v-model="filterStatsu" placeholder="请选择" @change="filterChange">
+				<el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
 					<el-option
 						label="全部"
 						:value="-1">
