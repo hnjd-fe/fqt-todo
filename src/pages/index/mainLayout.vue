@@ -56,7 +56,7 @@
                           <el-button icon="el-icon-plus" circle></el-button>
                     </el-col>
                 </el-row>
-                <AddItemComp 
+                <AddItemSimpleComp 
 					:index="index" 
 					:item="item" 
 					:hide="hideMethod"
@@ -134,8 +134,6 @@ import moment from '@src/chrome/utils/moment.js'
 import config from '@src/chrome/config'
 import dataMixin from '@src/mixin/data.js'
 
-let tmer;
-
 export default {
     mixins: [ dataMixin ]
     , data() {
@@ -155,17 +153,6 @@ export default {
             if( ( this.listTotal > this.listPageSize ) ){
                 this.paddingMain = 'padding-bottom: 50px;'
             }
-		}
-		, closeEdit() {
-			this.itemjson = null;
-		}
-
-		, updateList( json, type, item ){
-			tmer && clearTimeout( tmer );
-
-			tmer = setTimeout( ()=>{
-				this.updateFullList( 1, this.$route.query.id );
-			}, 50 );
 		}
 
 		, hideMethod( type, item, json ) {

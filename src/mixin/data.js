@@ -1,4 +1,5 @@
 
+import AddItemSimpleComp from '@src/components/additem.simple.vue';
 import AddItemComp from '@src/components/additem.vue';
 import EditItemComp from '@src/components/edititem.vue';
 import GridDataComp from '@src/components/griddata.vue';
@@ -42,10 +43,12 @@ let mixin = {
 			, filterStatus: typeof store.get( 'status' ) != 'undefined' ? store.get( 'status' ) : false
 			, filterType: -1
 
+            , tmer: 0
         }
     }
     , components: {
-        AddItemComp
+        AddItemSimpleComp
+        , AddItemComp
 		, GridDataComp
 		, EditItemComp
     } 
@@ -63,9 +66,21 @@ let mixin = {
             this.$set( this.addVisible, type, !this.addVisible[ type ]  );
         }
 
+		, updateList( json, type, item ){
+			this.tmer && clearTimeout( this.tmer );
+
+			this.tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
+		}
+
 		, onEditItem( type, item, sindex ) {
 			console.log( 'onEditItem', type, item, sindex );
 			this.itemjson = item;
+		}
+
+		, closeEdit() {
+			this.itemjson = null;
 		}
 
         , filterChange( status ){

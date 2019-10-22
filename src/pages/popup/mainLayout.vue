@@ -42,7 +42,9 @@
 
                 </el-col>
                 <el-col :span="2" style="text-align: center">
-                    <el-button type="primary"  icon="el-icon-plus" circle style="zoom:.8"></el-button>
+                    <el-button type="primary"  icon="el-icon-plus" circle style="zoom:.8"
+                        @click="onAddItemFull"
+                    ></el-button>
                 </el-col>
             </el-row>
             </el-row>
@@ -87,13 +89,6 @@
             </el-col>
 
         </el-row>
-
-		<EditItemComp 
-		:isedit="itemjson"
-		:close="closeEdit"
-		:update="updateList"
-		/>
-
 		<el-row
 			v-if="!listData.length && !loading"
 			class="no-data"
@@ -102,6 +97,7 @@
 		</el-row>
 
     </el-main>
+
 		<el-pagination
 		  v-if="listData.length && !loading && listTotal > listPageSize && false"
 		  background
@@ -113,6 +109,17 @@
 		  >
 		</el-pagination>
 
+		<EditItemComp 
+		:isedit="itemjson"
+		:close="closeEdit"
+		:update="updateList"
+		/>
+
+		<AddItemComp 
+		:isedit="additemjson"
+		:close="closeAdd"
+		:update="updateList"
+		/>
     <el-footer>
         <el-row>
             <el-col :span="13">
@@ -242,6 +249,7 @@ export default {
     mixins: [ dataMixin ],
     data() {
         return {
+            additemjson: null
         }
     }
     , created(){
@@ -258,7 +266,18 @@ export default {
 		closeEdit() {
 			this.itemjson = null;
 		}
+		, closeAdd() {
+			this.additemjson = null;
+		}
 
+        , onAddItemFull() {
+            console.log( 111 );
+            this.additemjson = {
+                type: 0
+                , status: false
+                , endDate: moment().add( 1, 'days')._d.getTime()
+            };
+        }
 		, updateList( json, type, item ){
 			tmer && clearTimeout( tmer );
 
