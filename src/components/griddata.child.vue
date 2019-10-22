@@ -11,8 +11,8 @@
                         @change.self="onChange( $event, sitem, sindex, this )"
                         />
                 </el-col>
-                <el-col :span="17">
-                {{sitem.note}}&nbsp;
+                <el-col :span="17" style="word-break: break-all;">
+                    <span v-html="hightlightSearch(sitem.note, 1, sitem)"></span>
                 </el-col>
                 <el-col :span="6" style="text-align: right; padding-right: 5px; white-space: nowrap;">
                 {{moment(parseInt(sitem.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
@@ -47,7 +47,7 @@ import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ modifyMixin ]
-	, props: [ "index", "item", "list", "edit", "update" ]
+	, props: [ "index", "item", "list", "edit", "update", "searchText" ]
 	, watch: {
 		list: function( newv, oldv ){
 			if( newv ) {

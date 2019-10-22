@@ -45,6 +45,7 @@
 				:list="listData"
 				:fqtData="fqtData"
 				:updateFullList="updateFullList"
+                :searchText="searchText"
 				/>
 		</el-main>
 

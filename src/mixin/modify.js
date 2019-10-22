@@ -89,7 +89,7 @@ let mixin = {
                 text = text.replace( re, '<span class="search_hl">$1</span>') 
             }
             if( isPre && item && !item.nopre ){
-                text = `<pre>${text}</pre>`;
+                text = `<pre class="search_pre">${text}</pre>`;
             }
 
             return text;

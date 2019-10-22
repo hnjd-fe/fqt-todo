@@ -28,6 +28,7 @@
                     :list="fqtData[index]"
                     :update="updateList"
                     :edit="onEditItem"
+                    :searchText="searchText"
                     />
             </el-col>
         </el-row>
@@ -41,15 +42,8 @@
 
 <style>
 
-.listitem-box {
-    > .el-row {
-        line-height: 40px;
-        font-size: 14px;
-        border-bottom: 1px dashed #ccc;
-
-        > .el-col {
-        }
-    }
+.type-box {
+    overflow: auto;
 }
 
 </style>
@@ -62,7 +56,7 @@ import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ compsMixin, modifyMixin ]
-	, props: [ "list", "fqtData", "updateFullList" ]
+	, props: [ "list", "fqtData", "updateFullList", "searchText" ]
 	, watch: {
 		list: function( newv, oldv ){
 			if( newv ) {
