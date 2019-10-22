@@ -64,7 +64,7 @@
 					v-if="addVisible[index]" 
 					/>
 
-                <ListDataComp
+                <GridDataComp
 					:index="index" 
 					:item="item" 
 					:list="fqtData[index]"

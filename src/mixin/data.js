@@ -1,7 +1,7 @@
 
 import AddItemComp from '@src/components/additem.vue';
 import EditItemComp from '@src/components/edititem.vue';
-import ListDataComp from '@src/components/listdata.vue';
+import GridDataComp from '@src/components/griddata.vue';
 import db from '@src/chrome/db.js'
 import typemap from '@src/data/typemap.js'
 
@@ -46,7 +46,7 @@ let mixin = {
     }
     , components: {
         AddItemComp
-		, ListDataComp
+		, GridDataComp
 		, EditItemComp
     } 
     , methods: {
