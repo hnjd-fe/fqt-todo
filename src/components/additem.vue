@@ -51,7 +51,7 @@
 					</el-radio-group>
 				</el-form-item>
 
-				<el-form-item>
+				<el-form-item v-if="false">
 					<el-radio-group v-model="form.status">
 						<el-radio 
 						v-for="(sitem, sindex) in typemap.status" 

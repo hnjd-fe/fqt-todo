@@ -54,14 +54,12 @@
 		v-loading="loading"
         :style="paddingMain"
 	>
-
         <ListDataComp
             :list="listData"
-            :edit="onEditItem"
-            :update="updateList"
-            :hightlightSearch="hightlightSearch"
+			:updateFullList="updateFullList"
+			:additemjson_pnt="additemjson_pnt"
+            :searchText="searchText"
             />
-
     </el-main>
 
 		<el-pagination
@@ -74,18 +72,6 @@
 		  @current-change="curListChange"
 		  >
 		</el-pagination>
-
-		<EditItemComp 
-		:isedit="itemjson"
-		:close="closeEdit"
-		:update="updateList"
-		/>
-
-		<AddItemComp 
-		:isedit="additemjson"
-		:close="closeAdd"
-		:update="updateList"
-		/>
     <el-footer>
         <el-row>
             <el-col :span="13">
@@ -120,85 +106,7 @@
 </el-container>
 </template>
 <style lang="less">
-
 @import './index.less';
-
-#app {
-	position: relative;
-}
-.el-main {
-	padding: 0px;
-	position: relative;
-}
-
-.el-aside {
-    color: #333;
-}
-
-.pluginName {
-    float: left;
-}
-
-.el-row {
-    text-align: left;
-}
-.el-main .el-row a label {
-    display: block;
-    font-weight: bold;
-}
-
-.el-main .el-row pre {
-    margin: 0;
-}
-
-.el-main .el-row .el-col {
-    padding: 10px 0 10px;
-}
-
-.el-main .el-row:nth-child(even){
-}
-.el-main .el-row:nth-child(even) .source {
-    /*background-color: #ececec;*/
-    padding-bottom: 5px;
-}
-
-.el-header {
-    //background-color: @headerBgColor;
-    padding: 0px 0;
-    color: #333;
-    height: @barHeight!important;
-    line-height: @barHeight;
-    margin: -1px -1px 1px -1px;
-    border-bottom: 1px solid #ececec;
-}
-
-.el-footer {
-    background-color: #87d8ff;
-    height: @barHeight!important;
-    line-height: @barHeight;
-}
-.el-pagination {
-    position: absolute;
-    bottom: 41px;
-    background: #fff;
-	height: 35px;
-    padding-top: 5px;
-}
-.el-pagination a {
-	min-width: 25px;
-}
-
-.no-data {
-	text-align: center;
-    padding: 20%;
-    font-weight: bold;
-    font-size: 32px;
-    color: #ccc;
-}
-
-.type-header {
-    font-size: 16px;
-}
 </style>
 
 <script>
@@ -215,7 +123,7 @@ export default {
     mixins: [ dataMixin ],
     data() {
         return {
-            additemjson: null
+			additemjson_pnt: null
 			, sortList: true
         }
     }
@@ -230,28 +138,13 @@ export default {
         this.initLogin();
     }
     , methods: {
-		closeEdit() {
-			this.itemjson = null;
-		}
-		, closeAdd() {
-			this.additemjson = null;
-		}
-
-        , onAddItemFull() {
-            console.log( 111 );
-            this.additemjson = {
+        onAddItemFull() {
+            this.additemjson_pnt = {
                 type: 0
                 , status: false
                 , endDate: moment().add( 1, 'days')._d.getTime()
             };
         }
-		, updateList( json, type, item ){
-			tmer && clearTimeout( tmer );
-
-			tmer = setTimeout( ()=>{
-				this.updateFullList( 1, this.$route.query.id );
-			}, 50 );
-		}
 
 		, afterUpdateList(){
 			this.loading = false;

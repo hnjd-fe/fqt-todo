@@ -11,6 +11,7 @@ let mixin = {
             , addVisible: [ false, false, false, false ]
 			, itemjson: null
             , addVisible: [ false, false, false, false ]
+            , tmer: 0
         }
     }
     , methods: {
@@ -71,7 +72,7 @@ let mixin = {
 
             //text = text.replace( /[\r\n]+/g, '<br />' );
 
-            if( this.searchText ){
+            if( this.searchText && this.searchText.length > 1 ){
                 let tmpSearch = this.searchText;
                 tmpSearch = tmpSearch
                     .replace(/\\/g, '\\\\')

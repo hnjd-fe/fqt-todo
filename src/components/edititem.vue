@@ -160,6 +160,10 @@ export default {
 				return;
 			}
 
+            if( this.form.status ){
+                this.form.endDate = this.moment()._d.getTime()
+            }
+
             this.updateItem( this.form.id, this.form ).then( ( json )=>{
                 console.log( 'edit update', this.form.id, this.form );
 				this.onClose();

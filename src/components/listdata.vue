@@ -19,7 +19,10 @@
 						<label>{{typemap.item[sitem.type].label}}</label>
                     </el-col>
                     <el-col :span="10" style="text-align: right;" >
-                        <label>{{typemap.status[sitem.status ? 1 : 0 ].label}}</label>
+						<label style="font-size:12px;">{{moment( sitem.startDate ).format( 'YYYY-MM-DD  HH:mm:ss' ) }}</label>
+                        ~
+						<label style="font-size:12px;">{{moment( sitem.endDate ).format( 'YYYY-MM-DD  HH:mm:ss' ) }}</label>
+                        <!--<label>{{typemap.status[sitem.status ? 1 : 0 ].label}}</label>-->
                     </el-col>
                     <el-col :span="2" class="source" style="text-align: center; padding:0; ">
                         <div style="margin-top: 3px;">
@@ -46,6 +49,19 @@
 		>
 		{{$t('nodata')}}
 		</el-row>
+
+		<EditItemComp 
+		:isedit="itemjson"
+		:close="closeEdit"
+		:update="updateList"
+		/>
+
+		<AddItemComp 
+		:isedit="additemjson"
+		:close="closeAdd"
+		:update="updateList"
+		/>
+
     </div>
 </template>
 
@@ -72,18 +88,27 @@ import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ compsMixin, modifyMixin ]
-	, props: [ "index", "item", "list", "edit", "update", "hightlightSearch" ]
+	, props: [ "list", "additemjson_pnt", "updateFullList", "searchText" ]
 	, watch: {
 		list: function( newv, oldv ){
 			if( newv ) {
 			}else{
 			}
 		}
+		, additemjson_pnt: function( newv, oldv ){
+			if( newv ) {
+				this.additemjson = this.additemjson_pnt;
+			}else{
+			}
+		}
+
+
 	}
 	, data() {
 		return {
-			loading: null,
-			form: {
+			loading: null
+			, additemjson: null
+			, form: {
 				note: ''
 			}
 		}
@@ -94,6 +119,9 @@ export default {
 		, setStatus( status ){
             return status ? true : false;
 		}
+		, closeAdd() {
+			this.additemjson = null;
+		}
 		, onSubmit() {
 			return false;
 		}
@@ -101,11 +129,11 @@ export default {
 			this.hide && this.hide( this.index, this.item );
 		}
         , onEdit( evt, sitem, sindex ){
-            this.edit && this.edit( this.index, sitem, sindex )
+            this.onEditItem( this.index, sitem, sindex )
         }
         , onChange( evt, sitem, sindex, src ){
             this.updateItem( sitem.id, sitem ).then( ()=>{
-				this.update && this.update();
+				this.updateFullList && this.updateFullList();
 			});
         }
 	}

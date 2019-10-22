@@ -5,4 +5,80 @@ body {
     width: 600px;
     text-align: left;
 }
+#app {
+	position: relative;
+}
+.el-main {
+	padding: 0px;
+	position: relative;
+}
+
+.el-aside {
+    color: #333;
+}
+
+.pluginName {
+    float: left;
+}
+
+.el-row {
+    text-align: left;
+}
+.el-main .el-row a label {
+    display: block;
+    font-weight: bold;
+}
+
+.el-main .el-row pre {
+    margin: 0;
+}
+
+.el-main .el-row .el-col {
+    padding: 10px 0 10px;
+}
+
+.el-main .el-row:nth-child(even){
+}
+.el-main .el-row:nth-child(even) .source {
+    /*background-color: #ececec;*/
+    padding-bottom: 5px;
+}
+
+.el-header {
+    //background-color: @headerBgColor;
+    padding: 0px 0;
+    color: #333;
+    height: @barHeight!important;
+    line-height: @barHeight;
+    margin: -1px -1px 1px -1px;
+    border-bottom: 1px solid #ececec;
+}
+
+.el-footer {
+    background-color: #87d8ff;
+    height: @barHeight!important;
+    line-height: @barHeight;
+}
+.el-pagination {
+    position: absolute;
+    bottom: 41px;
+    background: #fff;
+	height: 35px;
+    padding-top: 5px;
+}
+.el-pagination a {
+	min-width: 25px;
+}
+
+.no-data {
+	text-align: center;
+    padding: 20%;
+    font-weight: bold;
+    font-size: 32px;
+    color: #ccc;
+}
+
+.type-header {
+    font-size: 16px;
+}
 

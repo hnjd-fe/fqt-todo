@@ -38,9 +38,6 @@ let mixin = {
 
 			, filterStatus: typeof store.get( 'status' ) != 'undefined' ? store.get( 'status' ) : false
 			, filterType: -1
-
-            , tmer: 0
-
 			, sortList: false
         }
     }
