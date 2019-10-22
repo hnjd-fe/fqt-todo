@@ -2,7 +2,8 @@ rm -rf ./fqt-todo/icons*/manifest.*
 cp -rf ./src/chrome ./fqt-todo 
 cp -rf ./src/manifest.json ./fqt-todo/manifest.json
 
-cp -rf ./src/assets/img ./fqt-todo/static
+mkdir -p ./fqt-todo/assets
+cp -rf ./src/assets/img ./fqt-todo/assets
 
 cp -rf ./fqt-todo/index.html ./fqt-todo/sync.html
 cp -rf ./fqt-todo/index.html ./fqt-todo/importExport.html
