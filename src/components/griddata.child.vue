@@ -43,7 +43,6 @@
 <script>
 
 import modifyMixin from '@src/mixin/modify.js'
-import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ modifyMixin ]

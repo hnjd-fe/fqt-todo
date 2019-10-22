@@ -84,7 +84,6 @@
 
 import modifyMixin from '@src/mixin/modify.js'
 import compsMixin from '@src/mixin/comps.js'
-import jsonUtils from 'json-utilsx'
 
 export default {
     mixins: [ compsMixin, modifyMixin ]
