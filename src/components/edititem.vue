@@ -100,7 +100,6 @@
 <script>
 
 import modifyMixin from '@src/mixin/modify.js'
-import jsonUitls from 'json-utilsx'
 
 export default {
     mixins: [ modifyMixin ]
