@@ -6,7 +6,7 @@
     , "manifest_version": 2
     , "browser_action": {
         "default_popup": "popup.html"
-        , "default_icon": "./assets/img/fqt-todo16.png"
+        , "default_icon": "./static/img/fqt-todo16.png"
         , "default_title": "fqt-todo"
     }
     , "background": {
@@ -45,10 +45,10 @@
     , "homepage_url": "https://github.com/hnjd-fe/fqt-todo"
     , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
     , "icons": {
-      "16": "./assets/img/fqt-todo16.png",
-      "32": "./assets/img/fqt-todo32.png",
-      "48": "./assets/img/fqt-todo48.png",
-      "128": "./assets/img/fqt-todo128.png"
+      "16": "./static/img/fqt-todo16.png",
+      "32": "./static/img/fqt-todo32.png",
+      "48": "./static/img/fqt-todo48.png",
+      "128": "./static/img/fqt-todo128.png"
     }
 }
 
