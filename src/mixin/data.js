@@ -3,6 +3,7 @@ import AddItemSimpleComp from '@src/components/additem.simple.vue';
 import AddItemComp from '@src/components/additem.vue';
 import EditItemComp from '@src/components/edititem.vue';
 import GridDataComp from '@src/components/griddata.vue';
+import ListDataComp from '@src/components/listdata.vue';
 import db from '@src/chrome/db.js'
 import typemap from '@src/data/typemap.js'
 
@@ -44,13 +45,16 @@ let mixin = {
 			, filterType: -1
 
             , tmer: 0
+
+			, sortList: false
         }
     }
     , components: {
         AddItemSimpleComp
         , AddItemComp
-		, GridDataComp
 		, EditItemComp
+		, GridDataComp
+        , ListDataComp
     } 
     , methods: {
         synchronousData() {
@@ -129,6 +133,8 @@ let mixin = {
         , updateDefaultList() {
             db.topList()
             .then( ( data )=>{
+				data = this.sortListFunc( data );
+
                 this.listData = data;
 				this.listTotal = this.listData.length;
 				this.listCurPage = 1;
@@ -140,6 +146,9 @@ let mixin = {
         , updateFullList( page = 1, id ) {
             db.fullList( page, 50, id, this.filterStatus, this.filterType )
             .then( ( data )=>{
+				console.log( 'sortList', this.sortList );
+				data.data = this.sortListFunc( data.data );
+
                 this.listData = data.data;
 				this.listTotal = data.total;
 				this.page = 1;
@@ -161,7 +170,25 @@ let mixin = {
 				//console.log( 'fulllist fqtData', this.fqtData );
             });
         }
+		, sortListFunc( data ) {
+			if( !this.sortList ) return data;
 
+			let tmp = [], o = {};
+
+			data.map( (item) => {
+				if( !o[item.type] ){
+					o[item.type] = [];
+				}
+				o[ item.type ].push( item );
+			});
+			for( let i = 0; i < 4; i++ ){
+				if( o[i] ){
+					tmp.push( ...o[i]);
+				}
+			}
+
+			return tmp;
+		}
         , afterUpdateList( curListPage ){
         }
 

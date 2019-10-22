@@ -54,47 +54,13 @@
 		v-loading="loading"
         :style="paddingMain"
 	>
-        <el-row v-for="( item, index ) in listData" :key="item.id"
-		v-if="!loading"
-        :class="`type-box type-box-${item.type}`"
-        >
-            <el-col style="padding:0">
-                <el-row style="vertical-align: middle; line-height: 20px;" class="type-header" >
-                    <el-col :span="2" style="text-align: center; ">
-                        {{index+1}}.
-                    </el-col>
-                    <el-col :span="10" >
-                        <label>{{typemap.item[item.type].label}}</label>
-                    </el-col>
-                    <el-col :span="10" style="text-align: right;" >
-                        <label>{{typemap.status[item.status ? 1 : 0 ].label}}</label>
-                    </el-col>
-                    <el-col :span="2" class="source" style="text-align: center; padding:0; ">
-                        <div style="margin-top: 3px;">
-                            <el-button  icon="el-icon-edit" 
-                            :title="$t('edit')"
-                            @click="onEditItem( $event, item, index )"
-                            style="zoom:.8"
-                            circle></el-button>
-                        </div>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="20" :offset="2" style="font-size: 14px;" >
-                <div>
-                    <a :title="item.type" >
-                        <span v-html="hightlightSearch(item.note, 1, item)"></span>
-                    </a>
-                </div>
-            </el-col>
 
-        </el-row>
-		<el-row
-			v-if="!listData.length && !loading"
-			class="no-data"
-		>
-		{{$t('nodata')}}
-		</el-row>
+        <ListDataComp
+            :list="listData"
+            :edit="onEditItem"
+            :update="updateList"
+            :hightlightSearch="hightlightSearch"
+            />
 
     </el-main>
 
@@ -250,6 +216,7 @@ export default {
     data() {
         return {
             additemjson: null
+			, sortList: true
         }
     }
     , created(){
