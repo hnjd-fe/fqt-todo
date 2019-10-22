@@ -8,6 +8,9 @@ let mixin = {
     data() {
         return {
 			typemap
+            , addVisible: [ false, false, false, false ]
+			, itemjson: null
+            , addVisible: [ false, false, false, false ]
         }
     }
     , methods: {
@@ -23,6 +26,18 @@ let mixin = {
                 });
             });
         }
+        , onAddItem( evt, type ) {
+            this.$set( this.addVisible, type, !this.addVisible[ type ]  );
+        }
+
+		, onEditItem( type, item, sindex ) {
+			console.log( 'onEditItem', type, item, sindex );
+			this.itemjson = item;
+		}
+		, closeEdit() {
+			this.itemjson = null;
+		}
+
         , updateItem( id, json ) {
             return new Promise( ( resolve, reject ) => {
                 db.update( id, json ).then( ( r )=> {
@@ -41,6 +56,44 @@ let mixin = {
                 });
             });
         }
+
+		, updateList( json, type, item ){
+			this.tmer && clearTimeout( this.tmer );
+
+			this.tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
+		}
+
+        , hightlightSearch( text, isPre, item ){
+			text = (text || '').toString();
+            text = text.replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
+
+            //text = text.replace( /[\r\n]+/g, '<br />' );
+
+            if( this.searchText ){
+                let tmpSearch = this.searchText;
+                tmpSearch = tmpSearch
+                    .replace(/\\/g, '\\\\')
+                    .replace(/\*/g, '\\*')
+                    .replace(/\(/g, '\\(')
+                    .replace(/\)/g, '\\)')
+                    .replace(/\{/g, '\\{')
+                    .replace(/\}/g, '\\}')
+                    .replace(/\./g, '\\.')
+                    .replace(/\+/g, '\\+')
+                    .replace(/\-/g, '\\-')
+                    ;
+                let re = new RegExp( `(${tmpSearch})`, 'ig' );
+                text = text.replace( re, '<span class="search_hl">$1</span>') 
+            }
+            if( isPre && item && !item.nopre ){
+                text = `<pre>${text}</pre>`;
+            }
+
+            return text;
+        }
+
     }
 }
 

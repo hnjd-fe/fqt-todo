@@ -1,7 +1,4 @@
 
-import AddItemSimpleComp from '@src/components/additem.simple.vue';
-import AddItemComp from '@src/components/additem.vue';
-import EditItemComp from '@src/components/edititem.vue';
 import GridDataComp from '@src/components/griddata.vue';
 import ListDataComp from '@src/components/listdata.vue';
 import db from '@src/chrome/db.js'
@@ -38,8 +35,6 @@ let mixin = {
             , uid: localStorage.getItem( 'uid' )
 
             , typemap: typemap
-            , addVisible: [ false, false, false, false ]
-			, itemjson: null
 
 			, filterStatus: typeof store.get( 'status' ) != 'undefined' ? store.get( 'status' ) : false
 			, filterType: -1
@@ -50,10 +45,7 @@ let mixin = {
         }
     }
     , components: {
-        AddItemSimpleComp
-        , AddItemComp
-		, EditItemComp
-		, GridDataComp
+		GridDataComp
         , ListDataComp
     } 
     , methods: {
@@ -66,26 +58,6 @@ let mixin = {
                 });
             }
         }
-        , onAddItem( evt, type ) {
-            this.$set( this.addVisible, type, !this.addVisible[ type ]  );
-        }
-
-		, updateList( json, type, item ){
-			this.tmer && clearTimeout( this.tmer );
-
-			this.tmer = setTimeout( ()=>{
-				this.updateFullList( 1, this.$route.query.id );
-			}, 50 );
-		}
-
-		, onEditItem( type, item, sindex ) {
-			console.log( 'onEditItem', type, item, sindex );
-			this.itemjson = item;
-		}
-
-		, closeEdit() {
-			this.itemjson = null;
-		}
 
         , filterChange( status ){
             this.updateFullList( 1, this.$route.query.id );
@@ -196,35 +168,6 @@ let mixin = {
             db.total().then( ( total ) => {
                 this.fullTotal = total;
             });
-        }
-
-        , hightlightSearch( text, isPre, item ){
-			text = (text || '').toString();
-            text = text.replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
-
-            //text = text.replace( /[\r\n]+/g, '<br />' );
-
-            if( this.searchText ){
-                let tmpSearch = this.searchText;
-                tmpSearch = tmpSearch
-                    .replace(/\\/g, '\\\\')
-                    .replace(/\*/g, '\\*')
-                    .replace(/\(/g, '\\(')
-                    .replace(/\)/g, '\\)')
-                    .replace(/\{/g, '\\{')
-                    .replace(/\}/g, '\\}')
-                    .replace(/\./g, '\\.')
-                    .replace(/\+/g, '\\+')
-                    .replace(/\-/g, '\\-')
-                    ;
-                let re = new RegExp( `(${tmpSearch})`, 'ig' );
-                text = text.replace( re, '<span class="search_hl">$1</span>') 
-            }
-            if( isPre && item && !item.nopre ){
-                text = `<pre>${text}</pre>`;
-            }
-
-            return text;
         }
 
         , fixNewLine(){
