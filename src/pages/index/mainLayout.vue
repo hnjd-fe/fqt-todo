@@ -13,7 +13,7 @@
 			<el-col :span="10" style="text-align:right;">
 				<el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
 					<el-option
-						label="全部"
+						label="全部状态"
 						:value="-1">
 					</el-option>
 					<el-option
