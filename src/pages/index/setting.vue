@@ -3,9 +3,11 @@
     <el-main>
 		<el-form ref="form" :model="form" label-width="120px">
 
-			<el-form-item :label="$t('login')" v-if="!token" class="mg15">
+			<el-form-item :label="$t('login')" v-if="!token" >
                 <el-button type="primary" style="width:180px;" id="login">
-                    {{$t('login_github')}}<i class="el-icon-user-solid el-icon--right"></i></el-button>
+                    {{$t('login_github')}}<i class="el-icon-user-solid el-icon--right"></i>
+                </el-button>
+                <div style="height:15px">&nbsp;</div>
 			</el-form-item>
 
 			<el-form-item :label="$t('logout')+':'" v-if="token">
