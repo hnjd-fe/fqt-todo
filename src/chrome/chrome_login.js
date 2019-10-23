@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
         if( chrome && chrome.tabs  ){
             chrome.tabs.create( {
-                url: 'http://btbtd.org/api/fattodo'
+                url: 'http://btbtd.org/api/fqttodo'
             },
             function(tab) {
 
             });
         }else{
-            location.href = "http://btbtd.org/api/fattodo?from=" 
+            location.href = "http://btbtd.org/api/fqttodo?from=" 
 				+ encodeURIComponent( location.href.split('?')[0] ) ;
         }
 	});
