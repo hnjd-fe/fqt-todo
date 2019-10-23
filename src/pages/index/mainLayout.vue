@@ -12,15 +12,13 @@
 				</el-col>
 				<el-col :span="10" style="text-align:right;">
 					<el-radio-group v-model="filterStatus" size="medium" @change="filterChange">
-						<el-radio-button label="全部" 
-							:value="-1"
-						></el-radio-button>
+						<el-radio-button label="-1" 
+						>全部</el-radio-button>
 						<el-radio-button 
 							v-for="( item, index ) in typemap.status"
 							:key="index"
-							:label="item.label"
-							:value="item.value"
-						></el-radio-button>
+							:label="item.value"
+						>{{item.label}}</el-radio-button>
 					</el-radio-group>
 						&nbsp;
 				</el-col>

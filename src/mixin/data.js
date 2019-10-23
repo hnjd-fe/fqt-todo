@@ -47,7 +47,6 @@ let mixin = {
     } 
     , methods: {
         synchronousData() {
-            console.log( 'synchronousData', Date.now(), db.isLogin() );
 
             this.syncInProcessing = 1;
             if( db.isLogin() ){
@@ -56,10 +55,9 @@ let mixin = {
             }
         }
 
-        , filterChange( status ){
+        , filterChange( status, val ){
             this.updateFullList( 1, this.$route.query.id );
 			store.set( 'status', status );
-			console.log( 'filterStatus', status );
         }
 		, filterTypeChange( type ){
             this.updateFullList( 1, this.$route.query.id );
@@ -118,7 +116,6 @@ let mixin = {
         , updateFullList( page = 1, id ) {
             db.fullList( page, 50, id, this.filterStatus, this.filterType )
             .then( ( data )=>{
-				console.log( 'sortList', this.sortList );
 				data.data = this.sortListFunc( data.data );
 
                 this.listData = data.data;
