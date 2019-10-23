@@ -3,7 +3,7 @@
     <el-main>
 		<el-form ref="form" :model="form" label-width="120px">
 
-			<el-form-item :label="$t('login')" v-if="!token" style="margin-bottom: 15px;">
+			<el-form-item :label="$t('login')" v-if="!token" class="mg15">
                 <el-button type="primary" style="width:180px;" id="login">
                     {{$t('login_github')}}<i class="el-icon-user-solid el-icon--right"></i></el-button>
 			</el-form-item>
@@ -47,6 +47,10 @@
 
 <style>
 .el-row {
+}
+
+.mg15 {
+    margin-bottom: 15px!important;
 }
 </style>
 
