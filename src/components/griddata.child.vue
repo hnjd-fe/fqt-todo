@@ -28,6 +28,8 @@
 <style>
 
 .listitem-box {
+    height: 100%;
+    overflow: auto;
     > .el-row {
         line-height: 40px;
         font-size: 14px;

@@ -16,6 +16,9 @@ let mixin = {
     }
     , methods: {
         moment
+        , clone( json ){
+            return JSON.parse( JSON.stringify( json ) );
+        }
         , addItem( json ) {
             json.md5 = md5( json.note + Date.now() );
             console.log( 'addItem', json );

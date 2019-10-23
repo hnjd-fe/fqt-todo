@@ -43,7 +43,7 @@
 <style>
 
 .type-box {
-    overflow: auto;
+    overflow: hide;
 }
 
 </style>

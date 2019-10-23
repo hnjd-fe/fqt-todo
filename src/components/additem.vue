@@ -107,7 +107,7 @@ export default {
 		isedit: function( newv, oldv ){
 			this.dialog = !!newv;
 			if( newv ) {
-				this.form = jsonUitls.clone( newv );
+				this.form = this.clone( newv );
 
 				this.daterange = [ this.moment( newv.startDate )._d, this.moment( newv.endDate )._d ];
 			}else{
