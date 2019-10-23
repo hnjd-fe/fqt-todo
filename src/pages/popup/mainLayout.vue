@@ -4,7 +4,11 @@
       <el-header>
             <el-row>
                 <el-col :span="7">
-                    <el-select v-model="filterType" @change="filterTypeChange" style="width:95%;" size="medium">
+                    <el-select v-model="filterType" 
+                        @change="filterTypeChange" 
+                        style="width:95%;" 
+                        size="medium" 
+                        >
                         <el-option
                             :label="$t(`type--1`)"
                             :value="-1">
@@ -18,7 +22,11 @@
                     </el-select>
                 </el-col>
                 <el-col :span="7">
-                    <el-select v-model="filterStatus" @change="filterChange" style="width:95%;" size="medium">
+                    <el-select v-model="filterStatus" 
+                        @change="filterChange" 
+                        style="width:95%;" 
+                        size="medium"
+                        >
                         <el-option
                             :label="$t(`status--1`)"
                             :value="-1">
