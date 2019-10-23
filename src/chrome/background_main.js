@@ -107,6 +107,7 @@ function main(){
         switch( info.menuItemId ){
             case config.dbName: {
                 addNote( info, tab ).then( (data)=>{
+						console.log( 'on notifi', Date.now() );
 						copyNoti = chrome.notifications.create(
 							config.dbName,{   
 								type: 'basic', 
