@@ -11,18 +11,17 @@
 					<span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
 				</el-col>
 				<el-col :span="10" style="text-align:right;">
-					<el-select v-model="filterStatus" placeholder="请选择" @change="filterChange">
-						<el-option
-							label="全部状态"
-							:value="-1">
-						</el-option>
-						<el-option
+					<el-radio-group v-model="filterStatus" size="medium" @change="filterChange">
+						<el-radio-button label="全部" 
+							:value="-1"
+						></el-radio-button>
+						<el-radio-button 
 							v-for="( item, index ) in typemap.status"
 							:key="index"
 							:label="item.label"
-							:value="item.value">
-						</el-option>
-					</el-select>
+							:value="item.value"
+						></el-radio-button>
+					</el-radio-group>
 						&nbsp;
 				</el-col>
 				<el-col :span="4" style="text-align:right;">
@@ -116,11 +115,13 @@ export default {
     , mounted(){
         let p = this;
 		this.updateFullList( 1, this.$route.query.id );
+		this.loading = false;
+
+		console.log( this.filterStatus );
     }
     , methods: {
         moment
 		, afterUpdateList(){
-			this.loading = false;
 
             if( ( this.listTotal > this.listPageSize ) ){
                 this.paddingMain = 'padding-bottom: 50px;'

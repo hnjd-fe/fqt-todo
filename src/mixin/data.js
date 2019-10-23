@@ -59,6 +59,7 @@ let mixin = {
         , filterChange( status ){
             this.updateFullList( 1, this.$route.query.id );
 			store.set( 'status', status );
+			console.log( 'filterStatus', status );
         }
 		, filterTypeChange( type ){
             this.updateFullList( 1, this.$route.query.id );
@@ -110,6 +111,8 @@ let mixin = {
 
                 this.afterUpdateList();
                 this.updateFullTotal();
+
+                this.resolveFqtData();
             });
         }
         , updateFullList( page = 1, id ) {
@@ -122,10 +125,10 @@ let mixin = {
 				this.listTotal = data.total;
 				this.page = 1;
 
-                this.resolveFqtData();
-
                 this.afterUpdateList();
                 this.updateFullTotal();
+
+                this.resolveFqtData();
             });
         }
         , resolveFqtData( data ){
@@ -140,6 +143,8 @@ let mixin = {
             for( let k in tmp ){
                 this.$set( this.fqtData, k, tmp[k] );
             }
+
+			this.loading = false;
         }
 		, sortListFunc( data ) {
 			if( !this.sortList ) return data;
