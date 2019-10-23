@@ -11,6 +11,15 @@
 					<span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
 				</el-col>
 				<el-col :span="18" style="text-align:right;">
+					  <el-input
+						  :placeholder="$t('searchPlaceholder')"
+						  v-model="searchText"
+						  @input="onTextInput"
+						  style="width:300px;"
+						  >
+						  <i slot="prefix" class="el-input__icon el-icon-search"></i>
+					  </el-input>    
+					  &nbsp;
 					<el-radio-group v-model="filterStatus" @change="filterChange" style="margin-top:-5px;">
 						<el-radio-button :label="-1" 
 						>{{$t(`status--1`)}}</el-radio-button>
@@ -21,15 +30,6 @@
 						>{{$t(`status-${item.value?1:0}`)}}</el-radio-button>
 					</el-radio-group>
 						&nbsp;
-					  <el-input
-						  :placeholder="$t('searchPlaceholder')"
-						  v-model="searchText"
-						  @input="onTextInput"
-						  style="width:300px;"
-						  >
-						  <i slot="prefix" class="el-input__icon el-icon-search"></i>
-					  </el-input>    
-					  &nbsp;
 						<el-button type="primary"  icon="el-icon-plus" circle style=""
 							@click="onAddItemFull"
 						></el-button>
