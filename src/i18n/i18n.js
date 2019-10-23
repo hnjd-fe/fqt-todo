@@ -37,7 +37,7 @@ const messages = {
         "setting": "设置"
 
 		, "searchPlaceholder": "查找全部任务"
-		, "nodata": "暂无数据"
+		, "nodata": "没有任务"
 
         , "synchronous_short": "同步"
         , "synchronous_in_processing": "数据同步中，请稍候..."

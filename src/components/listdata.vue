@@ -46,6 +46,7 @@
 		<el-row
 			v-if="!list.length && !loading"
 			class="no-data"
+            style="border: 0px"
 		>
 		{{$t('nodata')}}
 		</el-row>
