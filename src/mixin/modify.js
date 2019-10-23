@@ -41,6 +41,13 @@ let mixin = {
 		, closeEdit() {
 			this.itemjson = null;
 		}
+		, updateList( json, type, item ){
+			this.tmer && clearTimeout( this.tmer );
+
+			this.tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
+		}
 
         , updateItem( id, json ) {
             return new Promise( ( resolve, reject ) => {
@@ -61,13 +68,6 @@ let mixin = {
             });
         }
 
-		, updateList( json, type, item ){
-			this.tmer && clearTimeout( this.tmer );
-
-			this.tmer = setTimeout( ()=>{
-				this.updateFullList( 1, this.$route.query.id );
-			}, 50 );
-		}
 
         , hightlightSearch( text, isPre, item ){
 			text = (text || '').toString();

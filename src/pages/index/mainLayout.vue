@@ -2,7 +2,7 @@
   <el-container>
 		<el-header style="text-align: left; font-size: 12px">
 			<el-row>
-				<el-col :span="10">
+				<el-col :span="6">
 					<span>
 						<i class="el-icon-logo" style="margin-right: 0px"></i>
 					</span>
@@ -10,8 +10,8 @@
 					<span>{{$t('totalLabel')}} </span><span>{{fullTotal}}</span>
 					<span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
 				</el-col>
-				<el-col :span="10" style="text-align:right;">
-					<el-radio-group v-model="filterStatus" size="medium" @change="filterChange">
+				<el-col :span="18" style="text-align:right;">
+					<el-radio-group v-model="filterStatus" @change="filterChange" style="margin-top:-5px;">
 						<el-radio-button :label="-1" 
 						>{{$t(`status--1`)}}</el-radio-button>
 						<el-radio-button 
@@ -21,15 +21,18 @@
 						>{{$t(`status-${item.value?1:0}`)}}</el-radio-button>
 					</el-radio-group>
 						&nbsp;
-				</el-col>
-				<el-col :span="4" style="text-align:right;">
 					  <el-input
 						  :placeholder="$t('searchPlaceholder')"
 						  v-model="searchText"
 						  @input="onTextInput"
+						  style="width:300px;"
 						  >
 						  <i slot="prefix" class="el-input__icon el-icon-search"></i>
 					  </el-input>    
+					  &nbsp;
+						<el-button type="primary"  icon="el-icon-plus" circle style=""
+							@click="onAddItemFull"
+						></el-button>
 				</el-col>
 			</el-row>
 		</el-header>
@@ -45,6 +48,12 @@
                 :searchText="searchText"
 				/>
 		</el-main>
+
+		<AddItemComp 
+		:isedit="additemjson_pnt"
+		:close="closeAdd"
+		:update="updateList"
+		/>
 
 		<el-pagination
 		  v-if="listData.length && !loading && listTotal > listPageSize"
@@ -102,12 +111,15 @@ import "@src/assets/css/iconfont/iconfont.css";
 import moment from '@src/chrome/utils/moment.js'
 import config from '@src/chrome/config'
 import dataMixin from '@src/mixin/data.js'
+import compsMixin from '@src/mixin/comps.js'
 
 export default {
-    mixins: [ dataMixin ]
+    mixins: [ dataMixin, compsMixin ]
     , data() {
         return {
             packInfo: packInfo
+			, additemjson_pnt: null
+			, tmer: null
         }
     }
     , mounted(){
@@ -119,6 +131,25 @@ export default {
     }
     , methods: {
         moment
+        , onAddItemFull() {
+            this.additemjson_pnt = {
+                type: 0
+                , status: false
+                , endDate: moment().add( 1, 'days')._d.getTime()
+            };
+        }
+		, closeAdd() {
+			this.additemjson_pnt = null;
+		}
+		, updateList( json, type, item ){
+			this.tmer && clearTimeout( this.tmer );
+
+			this.tmer = setTimeout( ()=>{
+				this.updateFullList( 1, this.$route.query.id );
+			}, 50 );
+		}
+
+
 		, afterUpdateList(){
 
             if( ( this.listTotal > this.listPageSize ) ){
