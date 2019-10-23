@@ -4,29 +4,29 @@
       <el-header>
             <el-row>
                 <el-col :span="7">
-                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange" style="width:95%;" size="medium">
+                    <el-select v-model="filterType" @change="filterTypeChange" style="width:95%;" size="medium">
                         <el-option
-                            label="全部类型"
+                            :label="$t(`type--1`)"
                             :value="-1">
                         </el-option>
                         <el-option
                             v-for="( item, index ) in typemap.item"
                             :key="index"
-                            :label="item.label"
+                            :label="$t(`type-${index}`)"
                             :value="index">
                         </el-option>
                     </el-select>
                 </el-col>
                 <el-col :span="7">
-                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange" style="width:95%;" size="medium">
+                    <el-select v-model="filterStatus" @change="filterChange" style="width:95%;" size="medium">
                         <el-option
-                            label="全部状态"
+                            :label="$t(`status--1`)"
                             :value="-1">
                         </el-option>
                         <el-option
                             v-for="( item, index ) in typemap.status"
                             :key="index"
-                            :label="item.label"
+                            :label="$t(`status-${index}`)"
                             :value="item.value">
                         </el-option>
                     </el-select>

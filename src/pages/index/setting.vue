@@ -7,12 +7,14 @@
                 <el-button type="primary" style="width:180px;" id="login">
                     {{$t('login_github')}}<i class="el-icon-user-solid el-icon--right"></i>
                 </el-button>
-                <div style="height:15px">&nbsp;</div>
+                <div style="height:15px;">&nbsp;</div>
 			</el-form-item>
 
 			<el-form-item :label="$t('logout')+':'" v-if="token">
                 <el-button type="primary" style="" id="logout">
-                    {{$t('logout')}} {{nickname}}@{{logintype}}<i class="el-icon-user-solid el-icon--right"></i></el-button>
+                    {{$t('logout')}} {{nickname}}@{{logintype}}<i class="el-icon-user-solid el-icon--right"></i>
+                </el-button>
+                <div style="height:15px;">&nbsp;</div>
 			</el-form-item>
 
 			<el-form-item :label="$t('language')">

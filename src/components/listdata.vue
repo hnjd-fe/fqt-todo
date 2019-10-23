@@ -16,7 +16,7 @@
 
                     </el-col>
                     <el-col :span="10" >
-						<label>{{typemap.item[sitem.type].label}}</label>
+						<label>{{$t(`type-${sitem.type}`)}}</label>
                     </el-col>
                     <el-col :span="10" style="text-align: right;" >
 						<label style="font-size:12px;">{{moment( sitem.startDate ).format( 'YYYY-MM-DD  HH:mm:ss' ) }}</label>

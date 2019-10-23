@@ -12,6 +12,7 @@ const messages = {
         "setting": "setting"
 
 		, "searchPlaceholder": "search all task"
+		, "inputPlaceholder": "type task in there, Ctrl+Enter submit."
 		, "nodata": "nothing in there"
 
         , "synchronous_short": "sync"
@@ -27,16 +28,50 @@ const messages = {
         , "logout": "logout"
         , "login": "login"
 
-        , "edit": "edit"
+        , "addTask": "Add Task"
+        , "editTask": "Edit Task"
+        , "edit": "Edit"
+        , "delete": "Delete"
+
+        , "status--1": "All Status"
+        , "status-0": "Active"
+        , "status-1": "Done"
+
+        , "type--1": "All Type"
+        , "type-0": "Important urgent"
+        , "type-1": "Important not urgent"
+        , "type-2": "Not important urgent"
+        , "type-3": "Not important not urgent"
+
+        , "submit": "Submit"
+        , "startDate": "begin date"
+        , "endDate": "end date"
+        , "cancel": "cancel"
+        , "confirm": "Confrim"
+
+        , 'requireNote': 'note something in there'
+        , 'deleteConfirm': 'Are you sure delete this item?'
+
+        , 'addNoteSuccess': 'task added!'
+        , 'addNoteError': 'add task failed!'
 	},
 	zh: {
-        "mainPage": "fqt-todo",
-        "importExport": "导入/导出",
-        "dataManage": "数据管理",
-        "popupPage": "popup 页面",
-        "setting": "设置"
+        'nooooooo': ''
+
+        , 'addNoteSuccess': '任务添加成功!'
+        , 'addNoteError': '添加任务时出错了！'
+
+        , 'requireNote': '请输入任务内容！'
+        , 'deleteConfirm': '确定要删除任务吗？'
+
+        , "mainPage": "fqt-todo"
+        , "importExport": "导入/导出"
+        , "dataManage": "数据管理"
+        , "popupPage": "popup 页面"
+        , "setting": "设置"
 
 		, "searchPlaceholder": "查找全部任务"
+		, "inputPlaceholder": "请输入任务，按Ctrl+Enter键完成"
 		, "nodata": "没有任务"
 
         , "synchronous_short": "同步"
@@ -52,7 +87,26 @@ const messages = {
         , "logout": "退出"
         , "login": "登陆"
 
+        , "addTask": "添加任务"
+        , "editTask": "编辑任务"
         , "edit": "编辑"
+        , "delete": "删除"
+
+        , "status--1": "全部状态"
+        , "status-0": "未完成"
+        , "status-1": "已完成"
+
+        , "type--1": "全部"
+        , "type-0": "很重要-很紧急"
+        , "type-1": "重要-不紧急"
+        , "type-2": "不重要-紧急"
+        , "type-3": "不重要-不紧急"
+
+        , "submit": "提交"
+        , "startDate": "开始日期"
+        , "endDate": "结束日期"
+        , "cancel": "取消"
+        , "confirm": "确定"
 	}
 }
 

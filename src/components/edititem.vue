@@ -9,10 +9,10 @@
 	  >
 	  <el-row slot="title" class="dtitle">
 		  <el-col :span="22">
-		  	编辑任务
+		  	{{$t('editTask')}}
 		  </el-col>
 		  <el-col :span="2" style="text-align: center; white-space: nowrap">
-			  <el-link type="danger" @click="onDelete()">删除</el-link>
+			  <el-link type="danger" @click="onDelete()">{{$t('delete')}}</el-link>
 		  </el-col>
 	  </el-row>
 	  <el-row class="demo-drawer__content">
@@ -23,7 +23,7 @@
 					  	autocomplete="off"
 						v-focus
 						v-model="form.note"
-						placeholder="请输入任务，按Ctrl+Enter键完成"
+						:placeholder="$t('inputPlaceholder')"
 						type="textarea"
 						autosize
 						@keydown.ctrl.enter.native="onSubmit()"
@@ -34,9 +34,9 @@
 					<el-date-picker
 						v-model="daterange"
 						type="datetimerange"
-						range-separator="至"
-						start-placeholder="开始日期"
-						end-placeholder="结束日期"
+						range-separator="-"
+						:start-placeholder="$t('startDate')"
+						:end-placeholder="$t('endDate')"
 						@change="onDateChange"
 						>
 					</el-date-picker>
@@ -48,7 +48,7 @@
 						v-for="(sitem, sindex) in typemap.item" 
 						:label="sindex" 
 						:key="sindex" 
-						>{{sitem.label}}</el-radio-button>
+						>{{$t(`type-${sindex}`)}}</el-radio-button>
 					</el-radio-group>
 				</el-form-item>
 
@@ -58,14 +58,14 @@
 						v-for="(sitem, sindex) in typemap.status" 
 						:label="sitem.value" 
 						:key="sindex" 
-						>{{sitem.label}}</el-radio-button>
+						>{{$t(`status-${sitem.value?1:0}`)}}</el-radio-button>
 					</el-radio-group>
 				</el-form-item>
 
 			  </el-form>
 			  <div class="demo-drawer__footer">
-				  <el-button type="primary" @click="onSubmit()">确 定</el-button>
-				  <el-button @click="onClose()">取 消</el-button>
+				  <el-button type="primary" @click="onSubmit()">{{$t('submit')}}</el-button>
+				  <el-button @click="onClose()">{{$t('cancel')}}</el-button>
 			  </div>
 		  </el-col>
 	  </el-row>
@@ -139,7 +139,10 @@ export default {
 			this.form.endDate = this.daterange[1].getTime();
 		}
 		, onDelete(){
-			this.$confirm('确定要删除任务吗？').then( ()=>{
+			this.$confirm( this.$t('deleteConfirm' ), {
+                confirmButtonText: this.$t('confirm')
+                , cancelButtonText: this.$t('cancel')
+            }).then( ()=>{
 				console.log( 'onDelete', Date.now() );
 
 				this.deleteItem( this.form.id, this.form.md5 ).then( ()=>{
@@ -153,7 +156,7 @@ export default {
 			console.log( 'onSubmit', this.form.note, Date.now() );
 			if( !this.form.note ) {
 				this.$message({
-					message: '请输入任务内容！',
+					message: this.$t( 'requireNote' ),
 					type: 'warning'
 				});
 				return;

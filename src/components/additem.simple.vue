@@ -8,7 +8,7 @@
 						suffix-icon="el-icon-enter"
 						v-focus
 						@blur="onBlur"
-						placeholder="请输入任务，按Ctrl+Enter键完成"
+						:placeholder="$t('inputPlaceholder')"
 						type="textarea"
 						autosize
 						@keydown.ctrl.enter.native="onSubmit()"
@@ -52,7 +52,7 @@ export default {
 			console.log( this.form.note, Date.now() );
 			if( !this.form.note ) {
 				this.$message({
-					message: '请输入任务内容！',
+					message: this.$t( 'requireNote' ),
 					type: 'warning'
 				});
 				return;
@@ -65,14 +65,14 @@ export default {
 
 			this.addItem( json ).then( ( json )=>{
 					this.$message({
-						message: '数据添加成功',
+						message: this.$t( 'addNoteSuccess' ),
 						type: 'success'
 					});
 					this.onBlur( null, json );
 					this.update && this.update( json, this.index, this.item  );
 				}, ()=>{
 					this.$message({
-						message: '添加数据时出错',
+						message: this.$t( 'addNoteError' ),
 						type: 'error'
 					});
 				}

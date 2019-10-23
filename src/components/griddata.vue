@@ -9,7 +9,7 @@
                 >
                 <el-row class="type-header" @click.native="onAddItem( $event, index )">
                     <el-col :span="18">
-                        <label>{{item.label}}</label>
+                        <label>{{$t(`type-${index}`)}}</label>
                     </el-col>
                     <el-col :span="6">
                           <el-button icon="el-icon-plus" circle></el-button>
