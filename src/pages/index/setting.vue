@@ -15,7 +15,6 @@
                     {{$t('logout')}} {{nickname}}@{{logintype}}<i class="el-icon-user-solid el-icon--right"></i></el-button>
 			</el-form-item>
 
-
 			<el-form-item :label="$t('language')">
 				<el-select v-model="form.lang" 
 					@change="localeChange"
