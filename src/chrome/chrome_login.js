@@ -15,15 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	if( !window.delegate ) return;
 
 	delegate( document.body, '#login', 'click', ( evt )=> {
+        console.log( 'login' );
+        return;
         if( chrome && chrome.tabs  ){
             chrome.tabs.create( {
-                url: 'http://btbtd.org/api/fqttodo'
+                url: 'http://btbtd.org/api/fattodo'
             },
             function(tab) {
 
             });
         }else{
-            location.href = "http://btbtd.org/api/fqttodo?from=" 
+            location.href = "http://btbtd.org/api/fattodo?from=" 
 				+ encodeURIComponent( location.href.split('?')[0] ) ;
         }
 	});

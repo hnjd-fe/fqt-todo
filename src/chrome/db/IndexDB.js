@@ -138,7 +138,7 @@ export default class IndexDB extends BaseDB {
                 .then( ( data )=>{
                     console.log( 'delete', id, data, md5 );
                    if( this.isLogin() && md5 ){
-                       axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/del&rnd=' + Date.now(), {
+                       axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/del&rnd=' + Date.now(), {
                             uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                             , md5: md5
@@ -180,7 +180,7 @@ export default class IndexDB extends BaseDB {
             console.log( 'data added:', dataItem );
             db[config.dbDataTableName].add( dataItem ).then(()=>{
                 if( this.isLogin() ){
-                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/add', {
+                    axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/add', {
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
                         , status: dataItem.status
@@ -234,7 +234,7 @@ export default class IndexDB extends BaseDB {
                     md5[ item.md5 ] = item.id;
                 });
                 
-               axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/sync&rnd=' + Date.now(), {
+               axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/sync&rnd=' + Date.now(), {
                     uid: localStorage.getItem( 'uid' )
                     , token: localStorage.getItem( 'token' )
                     , md5: JSON.stringify( md5 )
@@ -278,7 +278,7 @@ export default class IndexDB extends BaseDB {
                         item.token = localStorage.getItem( 'token' );
                     });
 
-                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/batchAdd', {
+                    axios.post( 'http://btbtd.org/api/fattodo/?s=/Index/Data/batchAdd', {
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
                         , data: JSON.stringify( data )
