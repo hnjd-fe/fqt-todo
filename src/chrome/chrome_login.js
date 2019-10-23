@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	if( !window.delegate ) return;
 
 	delegate( document.body, '#login', 'click', ( evt )=> {
-        console.log( 'login' );
-        return;
         if( chrome && chrome.tabs  ){
             chrome.tabs.create( {
                 url: 'http://btbtd.org/api/fqttodo'
