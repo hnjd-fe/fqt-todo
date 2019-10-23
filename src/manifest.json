@@ -14,9 +14,9 @@
     }
     , "permissions": [ 
         "tabs"
+        , "activeTab"
 		, "identity"
         , "windows"
-        , "declarativeContent"
         , "storage"
         , "contextMenus"
         , "notifications"
@@ -24,12 +24,6 @@
 		, "https://accounts.google.com/o/oauth2/token"
 		, "https://github.com/"
 		, "http://btbtd.org/api/*"
-    ]
-    , "optional_permissions": [
-        "http://*/"
-        , "https://*/"
-        , "ftp://*/"
-        , "file:///*/"
     ]
 	, "web_accessible_resources" : [
 		"chrome/utils/oauth2/oauth2.html"

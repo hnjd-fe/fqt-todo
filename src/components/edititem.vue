@@ -23,7 +23,7 @@
 					  	autocomplete="off"
 						v-focus
 						v-model="form.note"
-						placeholder="请输入任务，按CTRL+Enter键完成"
+						placeholder="请输入任务，按Ctrl+Enter键完成"
 						type="textarea"
 						autosize
 						@keydown.ctrl.enter.native="onSubmit()"

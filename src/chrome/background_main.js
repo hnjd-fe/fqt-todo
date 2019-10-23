@@ -45,6 +45,7 @@ function addNote(info, tab) {
     let data = {
 		note: `info.selectionText`
 		, status: 0
+        , type: 0
 		, siteTitle: tab.title
 		, md5: ''
 		, width: tab.width.toString()
@@ -103,18 +104,9 @@ function main(){
 
     var menuItem = chrome.contextMenus.create({
         "id": config.dbName
-        , "title": "svae selection text"
+        , "title": "add to fqt-todo task"
         , "contexts": ["selection"]
     });
-
-    /*
-    var child1 = chrome.contextMenus.create( {
-        "id": "save text"
-        , "title": "save text"
-        , "parentId": menuItem
-        , "contexts": ["selection"]
-    });
-    */
 
     chrome.contextMenus.onClicked.addListener( function(info, tab){
 
@@ -124,7 +116,7 @@ function main(){
 						copyNoti = chrome.notifications.create(
 							config.dbName,{   
 								type: 'basic', 
-								iconUrl: '../assets/img/save-everywhere48.png', 
+								iconUrl: '../assets/img/fqt-todo48.png', 
 								title: `${config.dbName} save done!`, 
 								message: `${data.note}`
 							},

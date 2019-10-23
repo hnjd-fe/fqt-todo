@@ -8,7 +8,7 @@
 						suffix-icon="el-icon-enter"
 						v-focus
 						@blur="onBlur"
-						placeholder="请输入任务，按CTRL+Enter键完成"
+						placeholder="请输入任务，按Ctrl+Enter键完成"
 						type="textarea"
 						autosize
 						@keydown.ctrl.enter.native="onSubmit()"
