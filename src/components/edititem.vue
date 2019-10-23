@@ -3,7 +3,7 @@
 	  :before-close="handleClose"
 	  :visible.sync="dialog"
 	  direction="rtl"
-	  custom-class="demo-drawer"
+	  custom-class="edit-drawer"
 	  ref="drawer"
 	  :show-close="false"
 	  >

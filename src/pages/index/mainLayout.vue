@@ -90,6 +90,10 @@
 .type-main > .el-col:nth-child( odd ){
 	border-right: 1px solid #d9d9d9;
 }
+
+.el-main {
+    overflow: hidden;
+}
 </style>
 
 <script>
