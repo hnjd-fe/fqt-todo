@@ -4,7 +4,7 @@
       <el-header>
             <el-row>
                 <el-col :span="7">
-                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange" style="width:95%;">
+                    <el-select v-model="filterType" placeholder="请选择" @change="filterTypeChange" style="width:95%;" size="medium">
                         <el-option
                             label="全部类型"
                             :value="-1">
@@ -18,7 +18,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="7">
-                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange" style="width:95%;">
+                    <el-select v-model="filterStatus" placeholder="请选择" @change="filterChange" style="width:95%;" size="medium">
                         <el-option
                             label="全部状态"
                             :value="-1">
@@ -36,6 +36,7 @@
                       :placeholder="$t('searchPlaceholder')"
                       v-model="searchText"
                       @input="onTextInput"
+                      size="medium"
                       >
                       <i slot="prefix" class="el-input__icon el-icon-search"></i>
                   </el-input>    

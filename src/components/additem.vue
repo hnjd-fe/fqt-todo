@@ -42,22 +42,22 @@
 				</el-form-item>
 
 				<el-form-item>
-					<el-radio-group v-model="form.type">
-						<el-radio 
+					<el-radio-group v-model="form.type" size="medium">
+						<el-radio-button
 						v-for="(sitem, sindex) in typemap.item" 
 						:label="sindex" 
 						:key="sindex" 
-						>{{sitem.label}}</el-radio>
+						>{{sitem.label}}</el-radio-button>
 					</el-radio-group>
 				</el-form-item>
 
-				<el-form-item v-if="false">
-					<el-radio-group v-model="form.status">
-						<el-radio 
+				<el-form-item>
+					<el-radio-group v-model="form.status" size="medium">
+						<el-radio-button 
 						v-for="(sitem, sindex) in typemap.status" 
 						:label="sitem.value" 
 						:key="sindex" 
-						>{{sitem.label}}</el-radio>
+						>{{sitem.label}}</el-radio-button>
 					</el-radio-group>
 				</el-form-item>
 
