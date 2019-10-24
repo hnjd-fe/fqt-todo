@@ -10,6 +10,7 @@
     "finish": "sh ./build/sh/finishbuild.sh",
     "backup": "sh ./build/sh/backup.sh",
     "clear": "rm -rf ./fqt-todo",
+    "packzip": "rm -rf fqt-todo.zip && zip -r fqt-todo.zip ./fqt-todo",
     "lint": "eslint --ext .js src"
   },
   "author": "suches<suches@btbtd.org>",
