@@ -24,18 +24,19 @@ fqt-todo 可以添加 todo 任务或者右键选择文本保存为任务，把�
 
 ## step 2 - 安装 fqt-todo 浏览器插件
 
+![install.png](./static/markdown_img/install.png)
 
 ## step 3 - 保存选中的文本（右键选择需要保存的文本，然后在弹出的菜单里点击 "add to fqt-todo task"）
 
+![add_selection.png](./static/markdown_img/add_selection.png)
 
 ## step 4 - 从插件弹框里获取最新保存的内容（插件弹框默认显示最近保存的50条数据）
 
+![popup_view.png](./static/markdown_img/popup_view.png)
 
-## step 5 - 快速获取保存的内容（在插件弹框最上方的搜索框输入相关内容进行搜索）
+## step 5 - 从插件主界面获取最新保存的内容（插件弹框默认显示最近保存的50条数据）
 
-
-## step 6 - 查看保存内容的详情（点击插件弹框可以跳转到内容详情页）
-
+![grid_view.png](./static/markdown_img/grid_view.png)
 
 # 开发插件 
 
