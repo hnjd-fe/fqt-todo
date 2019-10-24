@@ -4,7 +4,7 @@ four quadrant of time management todolist
 
 时间四象限 todolist
 
-# chrome 浏览器插件 fqt-todo
+## chrome 浏览器插件 fqt-todo
 
 fqt-todo 可以添加 todo 任务或者右键选择文本保存为任务，把数据存储在本地的 indexedDb
 
