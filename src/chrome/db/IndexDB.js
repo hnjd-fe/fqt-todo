@@ -147,9 +147,9 @@ export default class IndexDB extends BaseDB {
                    if( this.isLogin() && json.md5 ){
                        delete json.nid;
                        axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/update&rnd=' + Date.now(), qs.stringify({
-                            uid: localStorage.getItem( 'uid' )
+                            ...json
+                            , uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
-                            , ...json
                         })).then( (res)=>{
                             resolve( json );
                         });
