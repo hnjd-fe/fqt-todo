@@ -1,7 +1,7 @@
 {
     "name": "fqt-todo"
     , "short_name": "todolist"
-    , "version": "1.0"
+    , "version": "1.1"
     , "description": "fqt-todo 时间四象限管理插件, 通过四个维度管理日常任务优先级."
     , "manifest_version": 2
     , "browser_action": {

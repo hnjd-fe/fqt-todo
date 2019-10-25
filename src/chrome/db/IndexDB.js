@@ -145,15 +145,16 @@ export default class IndexDB extends BaseDB {
                 }).then( ()=>{
                     console.log( 'update', id, json, json.md5 );
                    if( this.isLogin() && json.md5 ){
+                       delete json.nid;
                        axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/update&rnd=' + Date.now(), qs.stringify({
                             uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                             , ...json
                         })).then( (res)=>{
-                            this.parseRequestData( res, ()=>{
-                                resolve( res );
-                            });
+                            resolve( json );
                         });
+                    }else{
+                        resolve( json );
                     }
                 });;
             });
@@ -261,6 +262,7 @@ export default class IndexDB extends BaseDB {
                    db[config.dbDataTableName].where('md5').equals( item.md5 ).modify( ( data )=>{
                         for( let k in data ){
                             if( k == 'id' ) continue;
+                            if( k == 'nid' ) continue;
                             data[k] = item[k];
                         }
                         console.log( 'indexdb update', data );
@@ -293,6 +295,7 @@ export default class IndexDB extends BaseDB {
 
                 data.map( ( item ) => {
                     delete item.id;
+                    delete item.nid;
                     md5[ item.md5 ] = item
                 });
 
