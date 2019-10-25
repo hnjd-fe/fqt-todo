@@ -5,8 +5,11 @@ import config from '../config.js'
 import IDBExportImport from '../utils/indexeddb-export-import.js'
 import moment from '../utils/moment.js'
 import saveAs from '../utils/FileSaver.js'
+import qs from '../utils/qs.js'
 
 import sync_data from '../data/sync_data.js';
+axios.defaults.crossDomain = true;
+axios.defaults.withCredentials = true
 
 export default class IndexDB extends BaseDB {
     constructor( dbType ){
@@ -138,11 +141,11 @@ export default class IndexDB extends BaseDB {
                 .then( ( data )=>{
                     console.log( 'delete', id, data, md5 );
                    if( this.isLogin() && md5 ){
-                       axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/del&rnd=' + Date.now(), {
+                       axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/del&rnd=' + Date.now(), qs.stringify({
                             uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                             , md5: md5
-                        }).then( (res)=>{
+                        })).then( (res)=>{
                             this.parseRequestData( res, ()=>{
                                 resolve();
                             });
@@ -180,7 +183,7 @@ export default class IndexDB extends BaseDB {
             console.log( 'data added:', dataItem );
             db[config.dbDataTableName].add( dataItem ).then(()=>{
                 if( this.isLogin() ){
-                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/add', {
+                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/add', qs.stringify({
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
                         , status: dataItem.status
@@ -195,7 +198,7 @@ export default class IndexDB extends BaseDB {
                         , endDate: parseInt( dataItem.endDate )
                         , updateDate: parseInt( dataItem.updateDate)
                         , createDate: parseInt( dataItem.createDate )
-                    }).then( (res)=>{
+                    })).then( (res)=>{
                         this.parseRequestData( res );
                     });
                 }
@@ -234,11 +237,12 @@ export default class IndexDB extends BaseDB {
                     md5[ item.md5 ] = item.id;
                 });
                 
-               axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/sync&rnd=' + Date.now(), {
+               axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/sync&rnd=' + Date.now(), qs.stringify({
                     uid: localStorage.getItem( 'uid' )
                     , token: localStorage.getItem( 'token' )
                     , md5: JSON.stringify( md5 )
-                }).then( (res)=>{
+                })).then( (res)=>{
+                    console.log( 'sync', Date.now() );
                     this.parseRequestData( res, ()=>{
                         resolve();
                     });
@@ -278,11 +282,11 @@ export default class IndexDB extends BaseDB {
                         item.token = localStorage.getItem( 'token' );
                     });
 
-                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/batchAdd', {
+                    axios.post( 'http://btbtd.org/api/fqttodo/?s=/Index/Data/batchAdd', qs.stringify({
                         uid: localStorage.getItem( 'uid' )
                         , token: localStorage.getItem( 'token' )
                         , data: JSON.stringify( data )
-                    }).then( (res)=>{
+                    })).then( (res)=>{
                         resolve();
                     });
                 }
