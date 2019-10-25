@@ -5,7 +5,6 @@ import config from '../config.js'
 import IDBExportImport from '../utils/indexeddb-export-import.js'
 import moment from '../utils/moment.js'
 import saveAs from '../utils/FileSaver.js'
-import qs from '../utils/qs.js'
 
 import sync_data from '../data/sync_data.js';
 axios.defaults.crossDomain = true;
