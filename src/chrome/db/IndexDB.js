@@ -151,11 +151,9 @@ export default class IndexDB extends BaseDB {
                             , uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                         })).then( (res)=>{
-                            resolve( json );
                         });
-                    }else{
-                        resolve( json );
                     }
+                    resolve( json );
                 });;
             });
         });
@@ -176,9 +174,9 @@ export default class IndexDB extends BaseDB {
                             , token: localStorage.getItem( 'token' )
                             , md5: md5
                         })).then( (res)=>{
-                            this.parseRequestData( res, ()=>{
-                                resolve();
-                            });
+                            //this.parseRequestData( res, ()=>{
+                                //resolve();
+                            //});
                         });
                     }
 
@@ -229,7 +227,7 @@ export default class IndexDB extends BaseDB {
                         , updateDate: parseInt( dataItem.updateDate)
                         , createDate: parseInt( dataItem.createDate )
                     })).then( (res)=>{
-                        this.parseRequestData( res );
+                        //this.parseRequestData( res );
                     });
                 }
                 resolve( dataItem )
