@@ -151,11 +151,9 @@ export default class IndexDB extends BaseDB {
                             , uid: localStorage.getItem( 'uid' )
                             , token: localStorage.getItem( 'token' )
                         })).then( (res)=>{
-                            resolve( json );
                         });
-                    }else{
-                        resolve( json );
                     }
+                    resolve( json );
                 });;
             });
         });
@@ -176,9 +174,9 @@ export default class IndexDB extends BaseDB {
                             , token: localStorage.getItem( 'token' )
                             , md5: md5
                         })).then( (res)=>{
-                            this.parseRequestData( res, ()=>{
-                                resolve();
-                            });
+                            //this.parseRequestData( res, ()=>{
+                                //resolve();
+                            //});
                         });
                     }
 
@@ -194,11 +192,12 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
             let dateStr = Date.now(); 
+            json.status = json.status ? 1 : 0;
             let dataItem =  Object.assign( {
                     note: '' 
                     , md5: '' 
                     , status: 0 
-                    , type: ''
+                    , type: 0
                     , tags: ''
                     , remark: ''
                     , width: 100
@@ -229,7 +228,7 @@ export default class IndexDB extends BaseDB {
                         , updateDate: parseInt( dataItem.updateDate)
                         , createDate: parseInt( dataItem.createDate )
                     })).then( (res)=>{
-                        this.parseRequestData( res );
+                        //this.parseRequestData( res );
                     });
                 }
                 resolve( dataItem )
@@ -457,14 +456,14 @@ export default class IndexDB extends BaseDB {
                 listData.push( {
                     note: tmpNote
                     , md5: md5( tmpNote )
-                    , status: 0
-                    , type: '-'
+                    , status: Math.round( Math.random() )
+                    , type: parseInt( Math.random() * 4 )
                     , tags: ''
                     , remark: ''
                     , width: "100"
                     , height: "100"
                     , startDate: dateStr
-                    , endDate: dateStr
+                    , endDate: moment().add( '1', 'days' )._d.getTime()
                     , createDate: dateStr
                     , updateDate: dateStr
                 } )

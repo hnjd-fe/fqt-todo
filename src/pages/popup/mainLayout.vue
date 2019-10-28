@@ -159,7 +159,7 @@ export default {
 			this.loading = false;
 
             if( ( this.listTotal > this.listPageSize ) ){
-                this.paddingMain = 'padding-bottom: 50px;'
+                //this.paddingMain = 'padding-bottom: 50px;'
             }
 
 		}

@@ -1,7 +1,16 @@
 
 # fqt-tode changelog
 
-## v1.2
+## v1.5
+
+add data generator for dev
+fix error when add data to server 
+
+## v1.4
+
+add date no refresh
+
+## v1.3
 
 fix popup token 2019-10-26
 
