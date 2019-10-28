@@ -8,7 +8,7 @@ fix error when add data to server
 
 ## v1.4
 
-add date no refresh
+add data no refresh
 
 ## v1.3
 
