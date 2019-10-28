@@ -4,6 +4,7 @@
 ## v1.5
 
 add data generator for dev
+fix error when add data to server 
 
 ## v1.4
 
