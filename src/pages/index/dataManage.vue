@@ -5,7 +5,7 @@
             <databaseInfo ref="databaseInfo"></databaseInfo>
         </el-row>
         <el-row>
-            <el-button type="primary" @click="dataGenerator()" v-if="false">{{$t('generateDataLabel')}}<i class="el-icon-circle-plus el-icon--right"></i></el-button>
+            <el-button type="primary" @click="dataGenerator()" v-if="isdev">{{$t('generateDataLabel')}}<i class="el-icon-circle-plus el-icon--right"></i></el-button>
         </el-row>
         <el-row>
             <el-button type="primary" @click="clearData()">{{$t('cleanAllData')}}<i class="el-icon-delete el-icon--right"></i></el-button>
@@ -42,6 +42,7 @@ export default {
             , dataGeneratorLock: 0
             , config: config
             , totalDataNum: 0
+            , isdev: parseInt( this.$route.query.isdev || 0 )
         }
     }
     , computed: {

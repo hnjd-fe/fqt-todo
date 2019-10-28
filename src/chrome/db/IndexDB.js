@@ -196,7 +196,7 @@ export default class IndexDB extends BaseDB {
                     note: '' 
                     , md5: '' 
                     , status: 0 
-                    , type: ''
+                    , type: 0
                     , tags: ''
                     , remark: ''
                     , width: 100
@@ -455,14 +455,14 @@ export default class IndexDB extends BaseDB {
                 listData.push( {
                     note: tmpNote
                     , md5: md5( tmpNote )
-                    , status: 0
-                    , type: '-'
+                    , status: Math.round( Math.random() )
+                    , type: parseInt( Math.random() * 4 )
                     , tags: ''
                     , remark: ''
                     , width: "100"
                     , height: "100"
                     , startDate: dateStr
-                    , endDate: dateStr
+                    , endDate: moment().add( '1', 'days' )._d.getTime()
                     , createDate: dateStr
                     , updateDate: dateStr
                 } )
