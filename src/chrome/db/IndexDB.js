@@ -192,6 +192,7 @@ export default class IndexDB extends BaseDB {
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
             let dateStr = Date.now(); 
+            json.status = json.status ? 1 : 0;
             let dataItem =  Object.assign( {
                     note: '' 
                     , md5: '' 
