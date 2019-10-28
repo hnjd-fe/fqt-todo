@@ -16,7 +16,7 @@ fqt-todo 可以添加 todo 任务或者右键选择文本保存为任务，把�
 
 ### 从 github 下载 fqt-todo 浏览器插件 离线安装包
 
-[fqt-todo.crx](https://raw.githubusercontent.com/hnjd-fe/qt-todo/master/fqt-todo.crx)
+[fqt-todo.crx](https://raw.githubusercontent.com/hnjd-fe/qt-todo/master/dist/fqt-todo-latest.crx)
 
 ### 从 chrome 应用商店下载 save-where 浏览器插件
 
