@@ -4,15 +4,20 @@
 ## v1.6
 
 config data make more specification
+support locales
+
+2019-10-29
 
 ## v1.5
 
 add data generator for dev
 fix error when add data to server 
 
+2019-10-28
+
 ## v1.4
 
-add data no refresh
+add data no refresh 2019-10-28
 
 ## v1.3
 
