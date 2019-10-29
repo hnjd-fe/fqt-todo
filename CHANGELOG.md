@@ -1,5 +1,5 @@
 
-# fqt-tode changelog
+# fqt-todo changelog
 
 ## v1.5
 
