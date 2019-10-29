@@ -101,7 +101,7 @@
                 <el-link v-if="token">, </el-link>
                 <el-link v-if="token" >{{nickname}}@{{logintype}} </el-link>
 
-                <el-link href="./index.html" target="_fqttodo_index" 
+                <el-link href="./index.html"  :target="`_${packInfo.name}_index`" 
                     style="margin-right: -10px"
                     :title="$t('setting')"
                     >

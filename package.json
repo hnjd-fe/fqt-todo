@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://github.com/hnjd-fe/fqt-todo",
   "description": "chrome browser plugin - four quadrant of time management todolist",
+  "output": "fqt-todo",
   "main": "index.js",
   "scripts": {
     "serve": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

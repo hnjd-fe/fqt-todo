@@ -3,6 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const packageConfig = require('../package.json')
 
 module.exports = {
   dev: {
@@ -45,10 +46,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../fqt-todo/index.html'),
+    index: path.resolve(__dirname, `../${packageConfig.output}/index.html`),
 
     // Paths
-    assetsRoot        : path.resolve(__dirname, '../fqt-todo'),
+    assetsRoot        : path.resolve(__dirname, `../${packageConfig.output}`),
     assetsSubDirectory: 'static',
     assetsPublicPath  : '',
 

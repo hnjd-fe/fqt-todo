@@ -16,8 +16,9 @@ const config = {
     , "dbName": manifest.name
     , "dbDesc": `${manifest.name} database`
     , "dbDataTableName": "notes"
-
     , "operationDelayMs": 500
+
+    , "apiUrl": `http://btbtd.org/api/${manifest.short_name}`
 };
 
 export default config;
