@@ -2,10 +2,12 @@
 import VueI18n from 'vue-i18n'
 import deepmerge from 'deepmerge'
 
+const packjson = require( '@root/package.json');
+
 // 准备翻译的语言环境信息
 const messages = {
 	en: {
-        "mainPage": "fqt-todo",
+        "mainPage": packjson.name,
         "importExport": "import/export",
         "dataManage": "data manage",
         "popupPage": "popup page",
@@ -64,7 +66,7 @@ const messages = {
         , 'requireNote': '请输入任务内容！'
         , 'deleteConfirm': '确定要删除任务吗？'
 
-        , "mainPage": "fqt-todo"
+        , "mainPage": packjson.name
         , "importExport": "导入/导出"
         , "dataManage": "数据管理"
         , "popupPage": "popup 页面"
