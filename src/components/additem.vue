@@ -24,6 +24,7 @@
 						v-model="form.note"
 						:placeholder="$t('inputPlaceholder')"
 						type="textarea"
+						suffix-icon="el-icon-enter"
 						autosize
 						@keydown.ctrl.enter.native="onSubmit()"
 					  ></el-input>
