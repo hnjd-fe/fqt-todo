@@ -1,6 +1,10 @@
 
 # fqt-todo changelog
 
+## v1.6
+
+config data make more specification
+
 ## v1.5
 
 add data generator for dev

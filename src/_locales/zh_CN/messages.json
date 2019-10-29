@@ -1,0 +1,8 @@
+{
+   "plugin_name": {
+      "message": "fqt-todo"
+   }
+   , "description": {
+      "message": "时间四象限管理插件, 通过四个维度管理日常任务优先级. 数据默认存储在本地的 IndexedDB，如果需要同步功能登陆github数据会存储在远端服务器。"
+   }
+}

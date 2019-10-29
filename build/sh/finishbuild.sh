@@ -1,5 +1,6 @@
 rm -rf ./fqt-todo/icons*/manifest.* 
 cp -rf ./src/chrome ./fqt-todo 
+cp -rf ./src/_locales ./fqt-todo/
 cp -rf ./src/manifest.json ./fqt-todo/manifest.json
 
 mkdir -p ./fqt-todo/assets
