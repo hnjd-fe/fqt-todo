@@ -46,9 +46,9 @@ fqt-todo 可以添加 todo 任务或者右键选择文本保存为任务，把�
 ## 运行本地开发环境
   yarn serve 
   
-  http://localhost:8080/index.html
+  http://localhost:8000/index.html
   
-  http://localhost:8080/popup.html
+  http://localhost:8000/popup.html
   
 ## 发布代码
   yarn build 
