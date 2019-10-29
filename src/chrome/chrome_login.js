@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	delegate( document.body, '#login', 'click', ( evt )=> {
         if( chrome && chrome.tabs  ){
             chrome.tabs.create( {
-                url: 'http://btbtd.org/api/fqttodo'
+                url: config.apiUrl
             },
             function(tab) {
 
             });
         }else{
-            location.href = "http://btbtd.org/api/fqttodo?from=" 
+            location.href = `${config.apiUrl}?from=` 
 				+ encodeURIComponent( location.href.split('?')[0] ) ;
         }
 	});

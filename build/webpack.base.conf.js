@@ -17,7 +17,7 @@ module.exports = {
     ...entryPlugins.entries
   },
   output: {
-    path: utils.resolve(__dirname, packageConfig.name ),
+    path: utils.resolve(__dirname, packageConfig.output ),
     filename: `${config.build.assetsSubDirectory}/js/[name].[hash:7].bundle.js`,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },

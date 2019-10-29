@@ -1,6 +1,6 @@
 {
     "name": "fqt-todo"
-    , "short_name": "todolist"
+    , "short_name": "fqttodo"
     , "default_locale": "zh_CN"
     , "version": "1.6"
     , "description": "__MSG_description__"
