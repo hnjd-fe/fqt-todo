@@ -21,7 +21,7 @@ let mixin = {
         }
         , addItem( json ) {
             json.md5 = md5( json.note + Date.now() );
-            console.log( 'addItem', json );
+            //console.log( 'addItem', json );
             return new Promise( ( resolve, reject ) => {
                 db.add( json ).then( ( json )=> {
                     resolve( json );
@@ -35,7 +35,7 @@ let mixin = {
         }
 
 		, onEditItem( type, item, sindex ) {
-			console.log( 'onEditItem', type, item, sindex );
+			//console.log( 'onEditItem', type, item, sindex );
 			this.itemjson = item;
 		}
 		, closeEdit() {

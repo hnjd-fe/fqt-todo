@@ -126,8 +126,6 @@ export default {
         let p = this;
 		this.updateFullList( 1, this.$route.query.id );
 		this.loading = false;
-
-		console.log( this.filterStatus );
     }
     , methods: {
         moment

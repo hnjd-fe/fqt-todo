@@ -1,12 +1,13 @@
 {
     "name": "fqt-todo"
     , "short_name": "todolist"
-    , "version": "1.5"
-    , "description": "fqt-todo 时间四象限管理插件, 通过四个维度管理日常任务优先级. 数据默认存储在本地的 IndexedDB，如果需要同步功能登陆github数据会存储在远端服务器。"
+    , "default_locale": "zh_CN"
+    , "version": "1.6"
+    , "description": "__MSG_description__"
     , "manifest_version": 2
     , "browser_action": {
         "default_popup": "popup.html"
-        , "default_icon": "./assets/img/fqt-todo16.png"
+        , "default_icon": "./assets/img/logo16.png"
         , "default_title": "fqt-todo"
     }
     , "background": {
@@ -39,10 +40,10 @@
     , "homepage_url": "https://github.com/hnjd-fe/fqt-todo"
     , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
     , "icons": {
-      "16": "./assets/img/fqt-todo16.png",
-      "32": "./assets/img/fqt-todo32.png",
-      "48": "./assets/img/fqt-todo48.png",
-      "128": "./assets/img/fqt-todo128.png"
+      "16": "./assets/img/logo16.png",
+      "32": "./assets/img/logo32.png",
+      "48": "./assets/img/logo48.png",
+      "128": "./assets/img/logo128.png"
     }
 }
 

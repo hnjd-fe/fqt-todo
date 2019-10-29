@@ -40,7 +40,7 @@ export default class IndexDB extends BaseDB {
     fullList( page = 1, size = 50, id, status, type = -1 ){
         let offset = ( page - 1 ) * size;
 
-        console.log( 'fullList', page, size, id, typeof status );
+        //console.log( 'fullList', page, size, id, typeof status );
 
         if( id ){
             return new Promise( ( resolve, reject ) => {

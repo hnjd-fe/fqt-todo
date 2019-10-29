@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const entryPlugins = utils.generateEntriesAndPlugins()
 const { VueLoaderPlugin } = require('vue-loader');
 
+const packageConfig = require('../package.json')
+
 console.log( 'entries:', entryPlugins.entries );
 console.log( 'process.env.NODE_ENV', process.env.NODE_ENV );
 
@@ -15,7 +17,7 @@ module.exports = {
     ...entryPlugins.entries
   },
   output: {
-    path: utils.resolve(__dirname, 'fqt-todo'),
+    path: utils.resolve(__dirname, packageConfig.name ),
     filename: `${config.build.assetsSubDirectory}/js/[name].[hash:7].bundle.js`,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },

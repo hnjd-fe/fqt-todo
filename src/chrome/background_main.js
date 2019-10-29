@@ -6,40 +6,6 @@ import md5 from './utils/md5.js'
 
 main();
 
-/*
-{
-  "info": {
-    "editable": false,
-    "frameId": 0,
-    "menuItemId": "fqt-todo",
-    "pageUrl": "chrome://extensions/",
-    "selectionText": "ID：opkoninacfpinfmklefkfdklgdebdoen"
-  },
-  "tag": {
-    "active": true,
-    "audible": false,
-    "autoDiscardable": true,
-    "discarded": false,
-    "favIconUrl": "",
-    "height": 946,
-    "highlighted": true,
-    "id": 538,
-    "incognito": false,
-    "index": 0,
-    "mutedInfo": {
-      "muted": false
-    },
-    "pinned": false,
-    "selected": true,
-    "status": "complete",
-    "title": "扩展程序",
-    "url": "chrome://extensions/",
-    "width": 932,
-    "windowId": 29
-  }
-}
-*/
-
 function addNote(info, tab) {
 
     let data = {
@@ -98,7 +64,7 @@ function main(){
 
     var menuItem = chrome.contextMenus.create({
         "id": config.dbName
-        , "title": "add to fqt-todo task"
+        , "title": `add to ${config.dbName} task`
         , "contexts": ["selection"]
     });
 
@@ -111,7 +77,7 @@ function main(){
 						copyNoti = chrome.notifications.create(
 							config.dbName,{   
 								type: 'basic', 
-								iconUrl: '../assets/img/fqt-todo48.png', 
+								iconUrl: '../assets/img/icon48.png', 
 								title: `${config.dbName} save done!`, 
 								message: `${data.note}`
 							},

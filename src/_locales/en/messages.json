@@ -1,0 +1,8 @@
+{
+   "plugin_name": {
+      "message": "fqt-todo"
+   }
+   , "description": {
+      "message": "chrome browser plugin - four quadrant of time management todolist"
+   }
+}
