@@ -6,6 +6,7 @@ if( typeof chrome !='undefined'
     && chrome.runtime.getManifest() 
 ){
     manifest = chrome.runtime.getManifest();
+    console.log( 'manifest', manifest );
 }else{
     manifest = require( '../manifest.json' );
 }
