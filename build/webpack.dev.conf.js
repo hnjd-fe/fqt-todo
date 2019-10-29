@@ -28,7 +28,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         {
             path: /\/(importExport|dataManage|settings).html/,
             bypass: function(req, res, proxyOptions) {
-                if (req.headers.accept.indexOf('html') !== -1) {
+                if ( req.headers.accept && req.headers.accept.indexOf('html') !== -1) {
                     return '/index.html';
                 }
             }

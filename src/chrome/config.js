@@ -1,7 +1,10 @@
+
+let manifest = require( '../manifest.json' );
+
 const config = {
     "name": "config.js"
-    , "dbName": "fqt-todo"
-    , "dbDesc": "fqt-todo database"
+    , "dbName": manifest.name
+    , "dbDesc": `${manifest.name} database`
     , "dbDataTableName": "notes"
 
     , "operationDelayMs": 500

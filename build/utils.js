@@ -110,6 +110,7 @@ exports.generateEntriesAndPlugins = () => {
     entries[name] = item
     plugins.push(new HtmlWebpackPlugin({
       ...config,
+      title: packageConfig.name || 'null',
       filename: `${name}.html`,
       template: `${file.dir}/index.html`,
       chunks: ['common', 'vendor', name],
