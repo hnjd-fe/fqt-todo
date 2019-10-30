@@ -11,6 +11,13 @@
       "font_class": "enter",
       "unicode": "e6e3",
       "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "587134",
+      "name": "sync",
+      "font_class": "sync",
+      "unicode": "e814",
+      "unicode_decimal": 59412
     }
   ]
 }

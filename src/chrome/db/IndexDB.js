@@ -280,7 +280,7 @@ export default class IndexDB extends BaseDB {
     }
 
 
-    sync() {
+    sync( returnUrl ) {
         return new Promise( ( resolve, reject ) => {
             if( !this.isLogin() ){
                 resolve();
@@ -306,7 +306,7 @@ export default class IndexDB extends BaseDB {
                     console.log( 'sync', Date.now(), res );
                     this.parseRequestData( res, ()=>{
                         resolve();
-                    });
+                    }, returnUrl);
                 });
                 /*
                 this.parseRequestData( {data:sync_data}, ()=>{
@@ -358,7 +358,7 @@ export default class IndexDB extends BaseDB {
 
     }
 
-    parseRequestData( res, cb ){
+    parseRequestData( res, cb, returnUrl ){
         if( res && res.data && res.data.errno === 1 ){
             this.logout();
             return;
@@ -382,42 +382,42 @@ export default class IndexDB extends BaseDB {
                     this.batchDelete( 'md5', md5List ).then( ()=>{
                         this.batchAdd( res.data.data.sync ).then( ( data )=>{
                             this.refresh++;
-                            this.checkRefresh();
+                            this.checkRefresh(returnUrl);
                         });
                     });
                 }else{
                     this.refresh++;
-                    this.checkRefresh();
+                    this.checkRefresh(returnUrl);
                 }
                 if( res.data.data.deleted && res.data.data.deleted.length ){
                     this.batchDelete( 'md5', res.data.data.deleted ).then( ()=>{
                         this.refresh++;
-                        this.checkRefresh();
+                        this.checkRefresh(returnUrl);
                     });
                 }else{
                     this.refresh++;
-                    this.checkRefresh();
+                    this.checkRefresh(returnUrl);
                 }
 
                 console.log( 'news', res.data.data.news );
                 if( res.data.data.news && res.data.data.news.length ){
                     this.batchPush( 'md5', res.data.data.news).then( ()=>{
                         this.refresh++;
-                        this.checkRefresh();
+                        this.checkRefresh(returnUrl);
                     });
                 }else{
                     this.refresh++;
-                    this.checkRefresh();
+                    this.checkRefresh(returnUrl);
                 }
 
                 if( res.data.data.update && res.data.data.update.length ){
                     this.batchUpdate( res.data.data.update).then( ()=>{
                         this.refresh++;
-                        this.checkRefresh();
+                        this.checkRefresh(returnUrl);
                     });
                 }else{
                     this.refresh++;
-                    this.checkRefresh();
+                    this.checkRefresh(returnUrl);
                 }
 
 
@@ -427,9 +427,13 @@ export default class IndexDB extends BaseDB {
         cb && cb( res.data );
     }
 
-    checkRefresh(){
+    checkRefresh(returnUrl){
         if( this.refresh === 4 ){
-            location.reload();
+            if( returnUrl ){
+                location.replace( returnUrl );
+            }else{
+                location.reload();
+            }
         }
     }
 

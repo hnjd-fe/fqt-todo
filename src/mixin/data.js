@@ -39,6 +39,7 @@ let mixin = {
 			, filterStatus: typeof store.get( 'status' ) != 'undefined' ? store.get( 'status' ) : false
 			, filterType: -1
 			, sortList: false
+            , syncReturnUrl: ''
         }
     }
     , components: {
@@ -50,7 +51,7 @@ let mixin = {
 
             this.syncInProcessing = 1;
             if( db.isLogin() ){
-                db.sync().then( ()=>{
+                db.sync( this.syncReturnUrl ).then( ()=>{
                 });
             }
         }
