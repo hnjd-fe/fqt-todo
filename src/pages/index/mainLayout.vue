@@ -130,6 +130,8 @@ export default {
             packInfo: packInfo
 			, additemjson_pnt: null
 			, tmer: null
+            , fullTotal: 0
+            , listTotal: 0
         }
     }
     , mounted(){

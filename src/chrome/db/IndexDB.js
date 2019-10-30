@@ -26,7 +26,9 @@ export default class IndexDB extends BaseDB {
     topList( limit = 50 ){
         return new Promise( ( resolve, reject ) => {
             let db = this.getDB();
-            resolve( db[config.dbDataTableName].orderBy('updateDate').reverse().limit( limit  ).toArray() );
+            db[config.dbDataTableName].orderBy('updateDate').reverse().limit( limit  ).toArray().then( (data)=>{
+                resolve( data );
+            });
         });
     }
 
@@ -37,7 +39,7 @@ export default class IndexDB extends BaseDB {
 		return data;
 	}
 
-    fullList( page = 1, size = 50, id, status, type = -1 ){
+    fullList( page = 1, size = 50, id, status, type = -1, searchText = '' ){
         let offset = ( page - 1 ) * size;
 
         //console.log( 'fullList', page, size, id, typeof status );
@@ -59,6 +61,12 @@ export default class IndexDB extends BaseDB {
             db[config.dbDataTableName].count(( count )=>{
                 let query = db[config.dbDataTableName].orderBy('updateDate').reverse();
 
+                if( searchText ){
+                    query.filter( ( item ) => {
+                        return item.note.indexOf( searchText ) > -1;
+                    });
+                }
+
                 if( typeof status == 'boolean' ){
 					let statusNum = status ? 1 : 0;
 					query = query.filter( ( item ) => {
@@ -74,7 +82,7 @@ export default class IndexDB extends BaseDB {
               	query.offset( offset ).limit( size ).toArray().then( ( data )=>{
 					this.fixStatus( data );
                     resolve( 
-                        { data: data, total: count }
+                        { data: data, total: data.length }
                     );
                 });
             });
@@ -90,7 +98,14 @@ export default class IndexDB extends BaseDB {
 
             db[config.dbDataTableName]
                 .orderBy('updateDate')
-                .each( ( note )=>{
+                .filter( ( item ) => {
+                    return (item.note||'').toLowerCase().indexOf( text.toLowerCase() ) > -1;
+                })
+                .toArray()
+                .then( ( data ) => {
+                    resolve( data );
+                });
+            /*.each( ( note )=>{
                     //console.log( notes );
                     let ltext = text.toLowerCase();
                     if( 
@@ -99,9 +114,11 @@ export default class IndexDB extends BaseDB {
                     ){
                         r.unshift( note );
                     }
-                }).then( ()=>{
+                })
+                .then( ( )=>{
                     resolve( r );
-                });;
+                });
+                */
 
             //resolve( [] );
         });

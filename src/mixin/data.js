@@ -57,13 +57,20 @@ let mixin = {
         }
 
         , filterChange( status, val ){
-            this.updateFullList( 1, this.$route.query.id );
+            this.updateFullList( 1, this.$route.query.id, this.getSearchText() );
 			store.set( 'status', status );
         }
 		, filterTypeChange( type ){
-            this.updateFullList( 1, this.$route.query.id );
+            this.updateFullList( 1, this.$route.query.id, this.getSearchText() );
 			store.set( 'type', type );
 		}
+        , getSearchText(){
+            let search = (this.searchText||'').trim();
+            if( search.length < 2 ){
+                search = '';
+            }
+            return search;
+        }
         , initLogin() {
             this.setDataItem( 'token' );
             this.setDataItem( 'username' );
@@ -114,14 +121,16 @@ let mixin = {
                 this.resolveFqtData();
             });
         }
-        , updateFullList( page = 1, id ) {
-            db.fullList( page, 50, id, this.filterStatus, this.filterType )
+        , updateFullList( page = 1, id, searchText = '' ) {
+            db.fullList( page, 50, id, this.filterStatus, this.filterType, searchText )
             .then( ( data )=>{
 				data.data = this.sortListFunc( data.data );
 
                 this.listData = data.data;
 				this.listTotal = data.total;
 				this.page = 1;
+
+                console.log( 'listTotal', this.listTotal, data );
 
                 this.afterUpdateList();
                 this.updateFullTotal();
@@ -131,11 +140,13 @@ let mixin = {
         }
         , resolveFqtData( data ){
             let tmp = { "0": [], "1": [], "2": [], "3": [] };
-            this.listData.map( ( item ) => {
+            data = data || this.listData;
+            data.map( ( item ) => {
                 if( !( item.type in tmp) ){
                     tmp[ item.type ] = [];
                 }
                 tmp[ item.type ].push( item );
+                item.status = item.status ? true : false;
             });
 
             for( let k in tmp ){
@@ -179,7 +190,7 @@ let mixin = {
             if( this.searchTextDelay ) clearTimeout( this.searchTextDelay );
 
             this.searchTextDelay = setTimeout( ()=>{
-				let search = (this.searchText||'').trim();
+				let search = this.getSearchText();
 				if( !search || search.length < 2 ){
 					this.isSearch = 0;
 					this.updateFullList( this.listCurPage );
@@ -190,14 +201,12 @@ let mixin = {
 
 				db.search( this.searchText ).then( ( list )=>{
 					this.isSearch = 1;
+					this.listCurPage = 1;
 					this.searchData = list;
 					this.listData = this.searchData.slice( 0, this.listPageSize );
-					this.listCurPage = 1;
 					this.listTotal = this.searchData.length
-
 					this.afterUpdateList();
                     this.updateFullTotal();
-
                     this.resolveFqtData();
 				});
             }, this.searchDelayMs );
@@ -209,6 +218,7 @@ let mixin = {
 			if( this.isSearch ){
 				let start = ( page - 1 ) * this.listPageSize;
 				this.listData = this.searchData.slice( start, start + this.listPageSize );
+                this.resolveFqtData();
 			}else{
 				this.updateFullList( page  );
 			}
