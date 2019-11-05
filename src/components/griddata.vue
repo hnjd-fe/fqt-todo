@@ -4,7 +4,7 @@
             <el-col 
                 :span="12" 
                 v-for="(item, index) in typemap.item"
-                :class="`type-box type-box-${index}`"
+                :class="`gridbox type-box type-box-${index}`"
                 :key="index"
                 >
                 <el-row class="type-header" @click.native="onAddItem( $event, index )">

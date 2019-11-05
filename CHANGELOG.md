@@ -1,6 +1,9 @@
 
 # fqt-todo changelog
 
+## v1.8 
+optimization line-height
+
 ## v1.7
 
 optimization search query and query count
