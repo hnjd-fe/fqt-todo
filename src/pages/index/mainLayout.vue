@@ -9,8 +9,18 @@
 					<label style="font-weight: bold; font-size: 16px;">{{packInfo.name}}</label>
 					<span>{{$t('totalLabel')}} </span><span>{{fullTotal}}</span>
 					<span v-if="fullTotal != listTotal">, {{$t('curTotalLabel')}} </span><span v-if="fullTotal != listTotal">{{listTotal}}</span>
+                    <el-link 
+                        v-if="token && !syncInProcessing" 
+                        :title="$t('synchronous')" 
+                        style="margin-left: 5px; display: inline-block;" 
+                        @click="synchronousData"
+                        >
+                        <i class="el-icon-refresh">{{$t('synchronous_short')}}</i>
+                    </el-link>
+
 				</el-col>
 				<el-col :span="18" style="text-align:right;">
+					  &nbsp;
 					  <el-input
 						  :placeholder="$t('searchPlaceholder')"
 						  v-model="searchText"
@@ -120,6 +130,8 @@ export default {
             packInfo: packInfo
 			, additemjson_pnt: null
 			, tmer: null
+            , fullTotal: 0
+            , listTotal: 0
         }
     }
     , mounted(){

@@ -1,6 +1,16 @@
 
 # fqt-todo changelog
 
+## v1.8 & v1.9
+optimization line-height
+
+## v1.7
+
+optimization search query and query count
+fix small screen display problem
+
+2019-10-30
+
 ## v1.6
 
 config data make more specification

@@ -11,10 +11,10 @@
                         @change.self="onChange( $event, sitem, sindex, this )"
                         />
                 </el-col>
-                <el-col :span="17" style="word-break: break-all;">
+                <el-col :span="17" :xl="17" :lg="16" :md="12" style="word-break: break-all;">
                     <span v-html="hightlightSearch(sitem.note, 1, sitem)"></span>
                 </el-col>
-                <el-col :span="6" style="text-align: right; padding-right: 5px; white-space: nowrap;">
+                <el-col :span="6" :xl="6" :lg="7" :md="11" style="text-align: right; padding-right: 5px; white-space: nowrap;">
                 {{moment(parseInt(sitem.updateDate)).format('YYYY-MM-DD HH:mm:ss')}}
                 <el-button  icon="el-icon-edit" circle style="zoom:.7"
                     @click="onEdit( $event, sitem, sindex )"

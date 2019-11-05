@@ -2,7 +2,7 @@
     "name": "fqt-todo"
     , "short_name": "fqttodo"
     , "default_locale": "zh_CN"
-    , "version": "1.6"
+    , "version": "1.9"
     , "description": "__MSG_description__"
     , "manifest_version": 2
     , "browser_action": {

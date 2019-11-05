@@ -38,10 +38,12 @@ import dataMixin from '@src/mixin/data.js'
 
 const packInfo = require( '@root/package.json' )
 
+
 export default {
     mixins: [ dataMixin ]
     , data() {
         return {
+            syncReturnUrl: "index.html"
         }
     }
     , methods: {
