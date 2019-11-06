@@ -1,6 +1,10 @@
 
 # fqt-todo changelog
 
+## v1.10
+
+fix background.js add task error and icon path
+
 ## v1.8 & v1.9
 optimization line-height
 

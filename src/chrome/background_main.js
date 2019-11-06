@@ -77,7 +77,7 @@ function main(){
 						copyNoti = chrome.notifications.create(
 							config.dbName,{   
 								type: 'basic', 
-								iconUrl: '../assets/img/icon48.png', 
+								iconUrl: '../assets/img/logo48.png', 
 								title: `${config.dbName} save done!`, 
 								message: `${data.note}`
 							},
