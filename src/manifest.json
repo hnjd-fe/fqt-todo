@@ -18,7 +18,6 @@
         , "activeTab"
         , "contextMenus"
         , "notifications"
-        , "webRequest"
 		, "https://accounts.google.com/o/oauth2/token"
 		, "https://github.com/"
 		, "http://btbtd.org/api/*"
