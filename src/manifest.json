@@ -27,7 +27,6 @@
 	, "web_accessible_resources" : [
 		"chrome/utils/oauth2/oauth2.html"
 	]
-    , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 	, "content_scripts": [
 		{
 			"matches": ["http://btbtd.org/api/fqttodo/token*"]
@@ -35,6 +34,7 @@
 			, "run_at": "document_start"
 		}
 	]
+    , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
     , "icons": {
       "16": "./assets/img/logo16.png",
       "32": "./assets/img/logo32.png",
