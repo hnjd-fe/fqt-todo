@@ -4,12 +4,14 @@
     , "default_locale": "zh_CN"
     , "version": "1.10"
     , "description": "__MSG_description__"
+    , "homepage_url": "https://github.com/hnjd-fe/fqt-todo"
     , "manifest_version": 2
     , "browser_action": {
         "default_popup": "popup.html"
         , "default_icon": "./assets/img/logo16.png"
         , "default_title": "fqt-todo"
     }
+	, "options_page": "index.html"
     , "background": {
         "page": "./chrome/background.html"
     }
@@ -25,6 +27,7 @@
 	, "web_accessible_resources" : [
 		"chrome/utils/oauth2/oauth2.html"
 	]
+    , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 	, "content_scripts": [
 		{
 			"matches": ["http://btbtd.org/api/fqttodo/token*"]
@@ -32,9 +35,6 @@
 			, "run_at": "document_start"
 		}
 	]
-	, "options_page": "index.html"
-    , "homepage_url": "https://github.com/hnjd-fe/fqt-todo"
-    , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
     , "icons": {
       "16": "./assets/img/logo16.png",
       "32": "./assets/img/logo32.png",
