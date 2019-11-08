@@ -36,10 +36,10 @@
 	]
     , "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
     , "icons": {
-      "16": "./assets/img/logo16.png",
-      "32": "./assets/img/logo32.png",
-      "48": "./assets/img/logo48.png",
-      "128": "./assets/img/logo128.png"
+          "16": "./assets/img/logo16.png",
+          "32": "./assets/img/logo32.png",
+          "48": "./assets/img/logo48.png",
+          "128": "./assets/img/logo128.png"
     }
 }
 
