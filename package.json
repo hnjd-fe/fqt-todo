@@ -12,7 +12,8 @@
     "backup": "sh ./build/sh/backup.sh",
     "clear": "rm -rf ./fqt-todo",
     "packzip": "rm -rf fqt-todo.zip && zip -r fqt-todo.zip ./fqt-todo",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "test": "snyk test"
   },
   "author": "suches<suches@btbtd.org>",
   "license": "MIT",
@@ -52,7 +53,6 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.5.0",
-    "node-sass": "^4.9.4",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ora": "^3.0.0",
     "popper.js": "^1.14.4",
@@ -62,6 +62,7 @@
     "resolve-url-loader": "^3.1.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
+    "snyk": "^1.248.0",
     "style-loader": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
