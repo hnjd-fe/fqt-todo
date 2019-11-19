@@ -13,7 +13,8 @@
     "clear": "rm -rf ./fqt-todo",
     "packzip": "rm -rf fqt-todo.zip && zip -r fqt-todo.zip ./fqt-todo",
     "lint": "eslint --ext .js src",
-    "test": "snyk test"
+    "postinstall": "snyk --dev protect",
+    "test": "snyk --dev test"
   },
   "author": "suches<suches@btbtd.org>",
   "license": "MIT",
