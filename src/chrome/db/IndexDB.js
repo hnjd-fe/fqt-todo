@@ -7,6 +7,7 @@ import moment from '../utils/moment.js'
 import saveAs from '../utils/FileSaver.js'
 
 import sync_data from '../data/sync_data.js';
+
 axios.defaults.crossDomain = true;
 axios.defaults.withCredentials = true
 
